@@ -7,16 +7,15 @@ import java.util.List;
 public class MedicalRecord {
     private long id;
     private Patient patient;
+    private Date orderDate;
     private User doctor;
-    private Date date;
     private String consultationReason;
     private String symptoms;
     private String diagnosis;
-    private String procedure;
-    private MedicalOrder Order;
-    private String notes;
+    private List<MedicalOrder> orders;
 
     // Getters
+
     public long getId() {
         return id;
     }
@@ -25,12 +24,12 @@ public class MedicalRecord {
         return patient;
     }
 
-    public User getDoctor() {
-        return doctor;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public Date getDate() {
-        return date;
+    public User getDoctor() {
+        return doctor;
     }
 
     public String getConsultationReason() {
@@ -45,16 +44,8 @@ public class MedicalRecord {
         return diagnosis;
     }
 
-    public String getProcedure() {
-        return procedure;
-    }
-
-    public MedicalOrder getOrder() {
-        return Order;
-    }
-
-    public String getNotes() {
-        return notes;
+    public List<MedicalOrder> getOrders() {
+        return orders;
     }
 
     // Setters
@@ -66,12 +57,12 @@ public class MedicalRecord {
         this.patient = patient;
     }
 
-    public void setDoctor(User doctor) {
-        this.doctor = doctor;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDoctor(User doctor) {
+        this.doctor = doctor;
     }
 
     public void setConsultationReason(String consultationReason) {
@@ -86,15 +77,7 @@ public class MedicalRecord {
         this.diagnosis = diagnosis;
     }
 
-    public void setProcedure(String procedure) {
-        this.procedure = procedure;
-    }
-
-    public void setOrder(MedicalOrder order) {
-        Order = order;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
+    public void setOrders(List<MedicalOrder> orders) {
+        this.orders = orders;
     }
 }

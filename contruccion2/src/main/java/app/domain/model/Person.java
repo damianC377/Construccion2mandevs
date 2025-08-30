@@ -1,14 +1,15 @@
 package app.domain.model;
 
+import java.sql.Date;
+
 public class Person {
     private long id;
-    private String name;
+    private String fullName;
     private long document;
-    private int age;
-    private String gender;
-    private String address;
-    private String phoneNumber;
     private String emailAddress;
+    private String phoneNumber;
+    private Date dateOfBirth;
+    private String address;
     private Role role;
 
     // Getters
@@ -16,74 +17,65 @@ public class Person {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
     public long getDocument() {
         return document;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public String getAddress() {
-        return address;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public Role getRole() {
         return role;
     }
 
+
     // Setters
     public void setId(long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public void setDocument(long document) {
         this.document = document;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setRole(Role role) {
         this.role = role;
     }
 }
-
-

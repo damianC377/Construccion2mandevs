@@ -5,11 +5,12 @@ import java.sql.Date;
 public class Invoice {
     private long id;
     private Patient patient;
-    private MedicalOrder order;
-    private String productService; // service or product
-    private int quantity;
-    private double value;
-    private Date date;
+    private User doctor;
+    private HealthInsurance insurance;
+    private String policyNumber;
+    private int policyValidityDays;
+    private Date policyEndDate;
+    private MedicalOrder medicalOrder;
 
     // Getters
     public long getId() {
@@ -20,24 +21,28 @@ public class Invoice {
         return patient;
     }
 
-    public MedicalOrder getOrder() {
-        return order;
+    public User getDoctor() {
+        return doctor;
     }
 
-    public String getProductService() {
-        return productService;
+    public HealthInsurance getInsurance() {
+        return insurance;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getPolicyNumber() {
+        return policyNumber;
     }
 
-    public double getValue() {
-        return value;
+    public int getPolicyValidityDays() {
+        return policyValidityDays;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getPolicyEndDate() {
+        return policyEndDate;
+    }
+
+    public MedicalOrder getMedicalOrder() {
+        return medicalOrder;
     }
 
     // Setters
@@ -49,23 +54,27 @@ public class Invoice {
         this.patient = patient;
     }
 
-    public void setOrder(MedicalOrder order) {
-        this.order = order;
+    public void setDoctor(User doctor) {
+        this.doctor = doctor;
     }
 
-    public void setProductService(String productService) {
-        this.productService = productService;
+    public void setInsurance(HealthInsurance insurance) {
+        this.insurance = insurance;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setPolicyNumber(String policyNumber) {
+        this.policyNumber = policyNumber;
     }
 
-    public void setValue(double value) {
-        this.value = value;
+    public void setPolicyValidityDays(int policyValidityDays) {
+        this.policyValidityDays = policyValidityDays;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setPolicyEndDate(Date policyEndDate) {
+        this.policyEndDate = policyEndDate;
+    }
+
+    public void setMedicalOrder(MedicalOrder medicalOrder) {
+        this.medicalOrder = medicalOrder;
     }
 }

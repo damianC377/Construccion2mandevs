@@ -1,20 +1,22 @@
 package app.domain.model;
 
 import java.sql.Date;
+import java.util.List;
 
+//Orden medica que contiene a todas las demas (medicamento, procedimiento,
+//ayudas diagnosticas).
 public class MedicalOrder {
-    private long id;
+    private long orderNumber;
     private Patient patient;
     private User doctor;
-    private String type; // medication / exam / procedure
-    private String detail;
-    private String dose;
-    private Date date;
-    private Boolean status;
+    private Date orderDate;
+    private List<MedicationOrder> medications;
+    private List<ProcedureOrder> procedures;
+    private List<DiagnosticTestOrder> diagnosticTests;
 
     // Getters
-    public long getId() {
-        return id;
+    public long getOrderNumber() {
+        return orderNumber;
     }
 
     public Patient getPatient() {
@@ -25,29 +27,26 @@ public class MedicalOrder {
         return doctor;
     }
 
-    public String getType() {
-        return type;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public String getDetail() {
-        return detail;
+    public List<MedicationOrder> getMedications() {
+        return medications;
     }
 
-    public String getDose() {
-        return dose;
+    public List<ProcedureOrder> getProcedures() {
+        return procedures;
     }
 
-    public Date getDate() {
-        return date;
+    public List<DiagnosticTestOrder> getDiagnosticTests() {
+        return diagnosticTests;
     }
 
-    public boolean getStatus() {
-        return status;
-    }
 
     // Setters
-    public void setId(long id) {
-        this.id = id;
+    public void setOrderNumber(long orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public void setPatient(Patient patient) {
@@ -58,23 +57,19 @@ public class MedicalOrder {
         this.doctor = doctor;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setMedications(List<MedicationOrder> medications) {
+        this.medications = medications;
     }
 
-    public void setDose(String dose) {
-        this.dose = dose;
+    public void setProcedures(List<ProcedureOrder> procedures) {
+        this.procedures = procedures;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setDiagnosticTests(List<DiagnosticTestOrder> diagnosticTests) {
+        this.diagnosticTests = diagnosticTests;
     }
 }
