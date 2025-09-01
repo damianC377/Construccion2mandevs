@@ -1,5 +1,6 @@
 package app.domain.model;
 
+//Extend es una herencia, coge atributos de person
 public class User extends Person{
     public String userName;
     public String password;

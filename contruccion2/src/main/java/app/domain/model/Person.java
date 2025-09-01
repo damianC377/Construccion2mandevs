@@ -2,6 +2,8 @@ package app.domain.model;
 
 import java.sql.Date;
 
+import app.domain.enums.Role;
+
 public class Person {
     private long id;
     private String fullName;
