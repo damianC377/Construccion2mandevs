@@ -1,6 +1,6 @@
 package app.domain.model;
 
-public class ProcedureOrder {
+public class ProcedureOrder extends Order {
     private long orderNumber;
     private ProcedureInventory procedure;
     private int quantity;

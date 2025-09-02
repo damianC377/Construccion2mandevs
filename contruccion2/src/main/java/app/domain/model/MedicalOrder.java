@@ -10,9 +10,7 @@ public class MedicalOrder {
     private Patient patient;
     private User doctor;
     private Date orderDate;
-    private List<MedicationOrder> medications;
-    private List<ProcedureOrder> procedures;
-    private List<DiagnosticTestOrder> diagnosticTests;
+    private List<Order> items;
 
     // Getters
     public long getOrderNumber() {
@@ -31,18 +29,7 @@ public class MedicalOrder {
         return orderDate;
     }
 
-    public List<MedicationOrder> getMedications() {
-        return medications;
-    }
-
-    public List<ProcedureOrder> getProcedures() {
-        return procedures;
-    }
-
-    public List<DiagnosticTestOrder> getDiagnosticTests() {
-        return diagnosticTests;
-    }
-
+  
 
     // Setters
     public void setOrderNumber(long orderNumber) {
@@ -61,15 +48,5 @@ public class MedicalOrder {
         this.orderDate = orderDate;
     }
 
-    public void setMedications(List<MedicationOrder> medications) {
-        this.medications = medications;
-    }
-
-    public void setProcedures(List<ProcedureOrder> procedures) {
-        this.procedures = procedures;
-    }
-
-    public void setDiagnosticTests(List<DiagnosticTestOrder> diagnosticTests) {
-        this.diagnosticTests = diagnosticTests;
-    }
+   
 }

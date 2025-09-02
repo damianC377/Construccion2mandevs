@@ -13,7 +13,7 @@ public class Patient {
     private MedicalRecord medicalRecord;
     private EmergencyContact emergencyContact;
     private HealthInsurance healthInsurance;
-    private Invoice invoice;
+    
 
 
 
@@ -58,11 +58,7 @@ public class Patient {
         return healthInsurance;
     }
 
-    public Invoice getInvoice() {
-        return invoice;
-    }
-
-
+ 
     // Setters
     public void setId(long id) {
         this.id = id;
@@ -104,7 +100,5 @@ public class Patient {
         this.healthInsurance = healthInsurance;
     }
 
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
-    }
+    
 }

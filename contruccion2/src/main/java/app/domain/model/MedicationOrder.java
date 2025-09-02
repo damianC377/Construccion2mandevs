@@ -1,60 +1,35 @@
 package app.domain.model;
 
-public class MedicationOrder {
-    private long orderNumber;
-    private MedicationInventory medication;
-    private String dosage;
-    private String treatmentDuration;
-    private int itemNumber;
-    private double cost;
+public class MedicationOrder extends Order {
 
-    // Getters
-    public long getOrderNumber() {
-        return orderNumber;
-    }
+	private MedicationInventory medication;
+	private String dosage;
+	private String treatmentDuration;
 
-    public MedicationInventory getMedication() {
-        return medication;
-    }
+	public MedicationInventory getMedication() {
+		return medication;
+	}
 
-    public String getDosage() {
-        return dosage;
-    }
+	public String getDosage() {
+		return dosage;
+	}
 
-    public String getTreatmentDuration() {
-        return treatmentDuration;
-    }
+	public String getTreatmentDuration() {
+		return treatmentDuration;
+	}
 
-    public int getItemNumber() {
-        return itemNumber;
-    }
+	// Setters
 
-    public double getCost() {
-        return cost;
-    }
+	public void setMedication(MedicationInventory medication) {
+		this.medication = medication;
+	}
 
-    // Setters
-    public void setOrderNumber(long orderNumber) {
-        this.orderNumber = orderNumber;
-    }
+	public void setDosage(String dosage) {
+		this.dosage = dosage;
+	}
 
-    public void setMedication(MedicationInventory medication) {
-        this.medication = medication;
-    }
+	public void setTreatmentDuration(String treatmentDuration) {
+		this.treatmentDuration = treatmentDuration;
+	}
 
-    public void setDosage(String dosage) {
-        this.dosage = dosage;
-    }
-
-    public void setTreatmentDuration(String treatmentDuration) {
-        this.treatmentDuration = treatmentDuration;
-    }
-
-    public void setItemNumber(int itemNumber) {
-        this.itemNumber = itemNumber;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
 }

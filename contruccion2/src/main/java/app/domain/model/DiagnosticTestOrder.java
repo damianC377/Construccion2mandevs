@@ -1,6 +1,6 @@
 package app.domain.model;
 
-public class DiagnosticTestOrder {
+public class DiagnosticTestOrder extends Order {
     private long orderNumber;
     private DiagnosticTestInventory diagnosticTestInventory;
     private int quantity;
