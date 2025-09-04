@@ -4,9 +4,15 @@ import app.domain.model.Patient;
 
 public interface PatientPort {
 
-	//Encuentra el documento del paciente
+	// Encontrar paciente por documento
 	public Patient findByDocument(Patient patient) throws Exception;
 	
-	//Guardar un paciente
+	// Crear paciente
 	public void save(Patient patient) throws Exception;
-}
+
+    // Actualizar paciente
+    public void update(Patient patient) throws Exception;
+    }
+
+
+

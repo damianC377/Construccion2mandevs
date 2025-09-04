@@ -2,7 +2,7 @@ package app.domain.model;
 
 import java.sql.Date;
 
-import app.domain.enums.Role;
+import app.domain.model.enums.Role;
 
 public class Person {
     private long id;
