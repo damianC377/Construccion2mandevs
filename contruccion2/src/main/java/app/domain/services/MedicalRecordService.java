@@ -1,32 +1,66 @@
 package app.domain.services;
 
-
-
 import app.domain.model.MedicalRecord;
 import app.domain.model.Patient;
+import app.domain.model.User;
+import app.domain.model.enums.Role;
 import app.domain.port.MedicalRecordPort;
+import app.domain.port.PatientPort;
+import app.domain.port.UserPort;
 
 public class MedicalRecordService {
-    private Patient patient;
+
+    private PatientPort patientPort;
     private MedicalRecordPort medicalRecordPort;
+    private UserPort userPort;
 
-
-    // Crear nueva historia clínica
-    public void createMedicalRecord(MedicalRecord record) throws Exception {
-        if (medicalRecordPort.findById(record) != null) {
-            throw new Exception("Ya existe una historia clínica con este ID");
+    // Crear historia clínica
+    public void create(MedicalRecord medicalRecord) throws Exception {
+        // Validar si el paciente existe
+        Patient patient = patientPort.findByDocument(medicalRecord.getPatient());
+        if (patient == null) {
+            throw new Exception("El paciente no existe");
         }
-        medicalRecordPort.save(record);
+
+        // // Validar que el registro lo haga un doctor
+        User doctor = userPort.findByDocument(medicalRecord.getDoctor());
+        if (doctor == null || !doctor.getRole().equals(Role.DOCTOR)) {
+            throw new Exception("La historia clínica solo puede ser registrada por un doctor");
+        }
+
+        // Validar que el paciente no tenga ya historia clínica
+        if (medicalRecordPort.findByPatient(patient) != null) {
+            throw new Exception("El paciente ya tiene una historia clínica registrada");
+        }
+
+        medicalRecord.setPatient(patient);
+        medicalRecord.setDoctor(doctor);
+
+        medicalRecordPort.save(medicalRecord);
     }
+
     // Actualizar historia clínica
-    public void updateMedicalRecord(MedicalRecord record) throws Exception {
-        if (medicalRecordPort.findById(record) == null) {
-            throw new Exception("Historia clínica no encontrada");
+    public void update(MedicalRecord record) throws Exception {
+        Patient patient = patientPort.findByDocument(record.getPatient());
+        if (patient == null || medicalRecordPort.findByPatient(patient) == null) {
+            throw new Exception("El paciente no tiene historia clínica registrada");
         }
+
         medicalRecordPort.update(record);
     }
-    // Consultar historia clinica
 
+    // Consultar historia clínica
+    public MedicalRecord getByPatient(Patient patient) throws Exception {
+        patient = patientPort.findByDocument(patient);
+        if (patient == null) {
+            throw new Exception("El paciente no existe");
+        }
 
+        MedicalRecord record = medicalRecordPort.findByPatient(patient);
+        if (record == null) {
+            throw new Exception("El paciente no tiene historia clínica registrada");
+        }
 
+        return record;
+    }
 }

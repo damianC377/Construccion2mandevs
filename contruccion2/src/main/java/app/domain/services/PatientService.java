@@ -7,29 +7,32 @@ import app.domain.port.PatientPort;
 import app.domain.port.UserPort;
 
 public class PatientService {
+
     private UserPort userPort;
     private PatientPort patientPort;
 
     // Crear paciente
-    public void createPatient(Patient patient, User user) throws Exception {
-        // Validación de duplicado: si ya existe otro paciente con el mismo documento
-        patient = patientPort.findByDocument(patient);
-        if (patient != null) {
+    public void create(Patient patient) throws Exception {
+        // Validar que no exista un paciente con el mismo documento
+        Patient foundPatient = patientPort.findByDocument(patient);
+        if (foundPatient != null) {
             throw new Exception("Este paciente ya fue registrado");
         }
 
-        // Validación de que solo el personal administrativo pueda crear el paciente
-        if (user == null || !user.getRole().equals(Role.ADMINISTRATIVE_STAFF)) {
-            throw new Exception("El paciente solo puede ser registrado por el personal administrativo");
+        // Validar que el registro lo haga personal administrativo
+        User administrativeStaff = userPort.findByDocument(patient.getAdministrativeStaff());
+        if (administrativeStaff == null || administrativeStaff.getRole() != Role.ADMINISTRATIVE_STAFF) {
+            throw new Exception("El paciente solo puede ser registrado por personal administrativo");
         }
 
         patientPort.save(patient);
     }
 
     // Actualizar paciente
-    public void updatePatient(Patient patient) throws Exception {
-        patient = patientPort.findByDocument(patient);
-        if (patient == null) {
+    public void update(Patient patient) throws Exception {
+        // Validar que el paciente exista
+        Patient foundPatient = patientPort.findByDocument(patient);
+        if (foundPatient == null) {
             throw new Exception("Paciente no encontrado");
         }
 
@@ -38,11 +41,12 @@ public class PatientService {
 
     // Consultar paciente
     public Patient getByDocument(Patient patient) throws Exception {
-        patient = patientPort.findByDocument(patient);
-        if (patient == null) {
+        // Buscar paciente por documento
+        Patient foundPatient = patientPort.findByDocument(patient);
+        if (foundPatient == null) {
             throw new Exception("Paciente no encontrado");
         }
 
-        return patient;
+        return foundPatient;
     }
 }
