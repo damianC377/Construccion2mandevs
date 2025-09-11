@@ -1,5 +1,7 @@
 package app.domain.model;
 
+import org.springframework.data.annotation.CreatedBy;
+
 import java.sql.Date;
 
 public class Patient {
@@ -13,14 +15,13 @@ public class Patient {
     private MedicalRecord medicalRecord;
     private EmergencyContact emergencyContact;
     private HealthInsurance healthInsurance;
+    private User administrativeStaff;
     
 
 
 
     // Getters
-    public long getId() {
-        return id;
-    }
+    public long getId() { return id; }
 
     public String getFullName() {
         return fullName;
@@ -58,7 +59,8 @@ public class Patient {
         return healthInsurance;
     }
 
- 
+    public User getAdministrativeStaff() { return administrativeStaff; }
+
     // Setters
     public void setId(long id) {
         this.id = id;
@@ -72,9 +74,7 @@ public class Patient {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    public void setGender(String gender) { this.gender = gender; }
 
     public void setAddress(String address) {
         this.address = address;
@@ -100,5 +100,5 @@ public class Patient {
         this.healthInsurance = healthInsurance;
     }
 
-    
+    public void setAdministrativeStaff(User administrativeStaff) { this.administrativeStaff = administrativeStaff; }
 }
