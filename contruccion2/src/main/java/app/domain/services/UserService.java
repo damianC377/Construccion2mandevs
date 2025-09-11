@@ -1,7 +1,7 @@
 package app.domain.services;
 
-import app.domain.model.enums.Role;
 import app.domain.model.User;
+import app.domain.model.enums.Role;
 import app.domain.port.UserPort;
 
 public class UserService {
