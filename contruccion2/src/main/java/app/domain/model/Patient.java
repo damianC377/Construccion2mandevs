@@ -15,7 +15,6 @@ public class Patient {
     private MedicalRecord medicalRecord;
     private EmergencyContact emergencyContact;
     private HealthInsurance healthInsurance;
-    private User administrativeStaff;
     
 
 
@@ -59,7 +58,6 @@ public class Patient {
         return healthInsurance;
     }
 
-    public User getAdministrativeStaff() { return administrativeStaff; }
 
     // Setters
     public void setId(long id) {
@@ -100,5 +98,4 @@ public class Patient {
         this.healthInsurance = healthInsurance;
     }
 
-    public void setAdministrativeStaff(User administrativeStaff) { this.administrativeStaff = administrativeStaff; }
 }
