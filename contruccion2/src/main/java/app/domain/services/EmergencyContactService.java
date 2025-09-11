@@ -13,7 +13,7 @@ public class EmergencyContactService {
     private EmergencyContactPort emergencyContactPort;
 
     // Crear contacto de emergencia
-    public void create(EmergencyContact contact, Patient patient, User administrativeStaff) throws Exception {
+    public void create(EmergencyContact contact, Patient patient, User adminUser) throws Exception {
         // Validar si el paciente existe
         patient = patientPort.findByDocument(patient);
         if (patient == null) {
@@ -21,7 +21,7 @@ public class EmergencyContactService {
         }
 
         // Validar que lo registre personal administrativo
-        if (administrativeStaff == null || !administrativeStaff.getRole().equals(Role.ADMINISTRATIVE_STAFF)) {
+        if (adminUser== null || !adminUser.getRole().equals(Role.ADMINISTRATIVE_STAFF)) {
             throw new Exception("El contacto de emergencia solo puede ser registrado por personal administrativo");
         }
 
@@ -33,21 +33,9 @@ public class EmergencyContactService {
         // Asociar contacto al paciente
         patient.setEmergencyContact(contact);
 
-        // Guardar contacto
         emergencyContactPort.save(contact);
     }
 
-    // Actualizar contacto de emergencia
-    public void update(EmergencyContact contact, Patient patient) throws Exception {
-        // Validar si el paciente existe y tiene contacto
-        patient = patientPort.findByDocument(patient);
-        if (patient == null || patient.getEmergencyContact() == null) {
-            throw new Exception("El paciente no tiene contacto de emergencia registrado");
-        }
-
-        // Actualizar contacto
-        emergencyContactPort.update(contact);
-    }
 
     // Consultar contacto de emergencia por paciente
     public EmergencyContact getByPatient(Patient patient) throws Exception {

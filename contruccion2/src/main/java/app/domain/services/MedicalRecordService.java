@@ -22,7 +22,7 @@ public class MedicalRecordService {
             throw new Exception("El paciente no existe");
         }
 
-        // // Validar que el registro lo haga un doctor
+        // Validar que el registro lo haga un doctor
         User doctor = userPort.findByDocument(medicalRecord.getDoctor());
         if (doctor == null || !doctor.getRole().equals(Role.DOCTOR)) {
             throw new Exception("La historia clínica solo puede ser registrada por un doctor");
@@ -39,15 +39,6 @@ public class MedicalRecordService {
         medicalRecordPort.save(medicalRecord);
     }
 
-    // Actualizar historia clínica
-    public void update(MedicalRecord record) throws Exception {
-        Patient patient = patientPort.findByDocument(record.getPatient());
-        if (patient == null || medicalRecordPort.findByPatient(patient) == null) {
-            throw new Exception("El paciente no tiene historia clínica registrada");
-        }
-
-        medicalRecordPort.update(record);
-    }
 
     // Consultar historia clínica
     public MedicalRecord getByPatient(Patient patient) throws Exception {

@@ -7,7 +7,7 @@ public interface PatientPort {
 	// Encontrar paciente por documento
 	public Patient findByDocument(Patient patient) throws Exception;
 	
-	// Crear paciente
+	// Guardar paciente
 	public void save(Patient patient) throws Exception;
 
     // Actualizar paciente

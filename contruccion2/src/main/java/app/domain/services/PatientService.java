@@ -12,7 +12,7 @@ public class PatientService {
     private PatientPort patientPort;
 
     // Crear paciente
-    public void create(Patient patient) throws Exception {
+    public void create(Patient patient, User adminUser) throws Exception {
         // Validar que no exista un paciente con el mismo documento
         Patient foundPatient = patientPort.findByDocument(patient);
         if (foundPatient != null) {
@@ -20,23 +20,11 @@ public class PatientService {
         }
 
         // Validar que el registro lo haga personal administrativo
-        User administrativeStaff = userPort.findByDocument(patient.getAdministrativeStaff());
-        if (administrativeStaff == null || administrativeStaff.getRole() != Role.ADMINISTRATIVE_STAFF) {
+        if (adminUser == null || adminUser.getRole() != Role.ADMINISTRATIVE_STAFF) {
             throw new Exception("El paciente solo puede ser registrado por personal administrativo");
         }
 
         patientPort.save(patient);
-    }
-
-    // Actualizar paciente
-    public void update(Patient patient) throws Exception {
-        // Validar que el paciente exista
-        Patient foundPatient = patientPort.findByDocument(patient);
-        if (foundPatient == null) {
-            throw new Exception("Paciente no encontrado");
-        }
-
-        patientPort.update(patient);
     }
 
     // Consultar paciente

@@ -2,33 +2,57 @@
 package app.domain.services;
 
 import app.domain.model.MedicalOrder;
+import app.domain.model.Patient;
+import app.domain.model.User;
 import app.domain.model.enums.Role;
 import app.domain.port.MedicalOrderPort;
+import app.domain.port.PatientPort;
+import app.domain.port.UserPort;
 
-public class medicalOrderService  {
+import java.util.List;
+
+
+public class MedicalOrderService {
     private MedicalOrderPort medicalOrderPort;
+    private PatientPort patientPort;
+    private UserPort userPort;
 
 
 
-    public void creatmedicalOrder(MedicalOrder order) throws Exception{
+    public void createMedicalOrder(MedicalOrder order) throws Exception{
 
-//verificando que la orden no pude estar vacia
-        if (order == null) {
-            throw new Exception("La orden no puede estar vacia ");
-
+        // Validar si el paciente existe
+        Patient patient = patientPort.findByDocument(order.getPatient());
+        if (patient == null) {
+            throw new Exception("El paciente no existe");
         }
-//Verificacion de personal        
-        if (order.getDoctor().getRole() != Role.DOCTOR){
+
+        //Verificacion de personal
+        User doctor = userPort.findByDocument(order.getDoctor());
+        if (doctor == null || !doctor.getRole().equals(Role.DOCTOR)) {
             throw new Exception("Solo personal autorizado ");
         }
+        order.setPatient(patient);
+        order.setDoctor(doctor);
 
-        if (order.getPatient()== null || order.getDoctor()== null){
-            throw new Exception("La orden debe de tener paciente y doctor ");
+        //Orden creada
+        medicalOrderPort.save(order);
 
-        }
-//Orden creada
-medicalOrderPort.save(order);        
-         System.out.println("La orde se ha creado correctamente"+ order);
     }
-        
+    // Consultar las órdenes médicas de un paciente
+    public List<MedicalOrder> getByPatient(Patient patient) throws Exception {
+        patient = patientPort.findByDocument(patient);
+        if (patient == null) {
+            throw new Exception("El paciente no existe");
+        }
+
+        List<MedicalOrder> orders = medicalOrderPort.findByPatient(patient);
+        if (orders == null || orders.isEmpty()) {
+            throw new Exception("El paciente no tiene órdenes médicas registradas");
+        }
+
+        return orders;
+    }
+
+
 }
