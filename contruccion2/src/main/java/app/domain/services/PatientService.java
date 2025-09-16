@@ -8,22 +8,32 @@ import app.domain.port.UserPort;
 
 public class PatientService {
 
+<<<<<<< Updated upstream
     private UserPort userPort;
     private PatientPort patientPort;
 
     // Crear paciente
     public void create(Patient patient, User adminUser) throws Exception {
+=======
+    private PatientPort patientPort;
+
+    // Crear paciente
+    public void create(Patient patient) throws Exception {
+>>>>>>> Stashed changes
         // Validar que no exista un paciente con el mismo documento
         Patient foundPatient = patientPort.findByDocument(patient);
         if (foundPatient != null) {
             throw new Exception("Este paciente ya fue registrado");
         }
 
+<<<<<<< Updated upstream
         // Validar que el registro lo haga personal administrativo
         if (adminUser == null || adminUser.getRole() != Role.ADMINISTRATIVE_STAFF) {
             throw new Exception("El paciente solo puede ser registrado por personal administrativo");
         }
 
+=======
+>>>>>>> Stashed changes
         patientPort.save(patient);
     }
 
