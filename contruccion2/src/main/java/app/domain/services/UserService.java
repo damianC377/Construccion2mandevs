@@ -7,6 +7,7 @@ import app.domain.port.UserPort;
 public class UserService {
 	
 	private UserPort userport;
+	private AuthUserService authuserservice;
 	
 	
 	//Crear un usuario
@@ -100,6 +101,8 @@ public class UserService {
 		if(!user.getPassword().equals(password)) {
 			throw new Exception("Contraseña incorrecta");
 		}
+		
+		authuserservice.login(user);
 		
 		return user;
 	}
