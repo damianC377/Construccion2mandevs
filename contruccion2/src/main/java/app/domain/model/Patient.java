@@ -1,6 +1,5 @@
 package app.domain.model;
 
-import org.springframework.data.annotation.CreatedBy;
 
 import java.sql.Date;
 
@@ -16,8 +15,6 @@ public class Patient {
     private EmergencyContact emergencyContact;
     private HealthInsurance healthInsurance;
     
-
-
 
     // Getters
     public long getId() { return id; }

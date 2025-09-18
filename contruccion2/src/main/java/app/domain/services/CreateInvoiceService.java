@@ -7,10 +7,9 @@ import app.domain.model.User;
 import app.domain.port.InvoicePort;
 import app.domain.port.PatientPort;
 
-import java.util.List;
 
 
-public class InvoiceService {
+public class CreateInvoiceService {
     private InvoicePort invoicePort;
     private PatientPort patientPort;
 
@@ -45,18 +44,5 @@ public class InvoiceService {
         //Factura Guardada
         invoicePort.save(invoice);
     }
-    // Consultar facturas de un paciente
-    public List<Invoice> getByPatient(Patient patient) throws Exception {
-        patient = patientPort.findByDocument(patient);
-        if (patient == null) {
-            throw new Exception("El paciente no existe");
-        }
-
-        List<Invoice> invoices = invoicePort.findByPatient(patient);
-        if (invoices == null || invoices.isEmpty()) {
-            throw new Exception("El paciente no tiene facturas registradas");
-        }
-
-        return invoices;
-    }
+   
 }

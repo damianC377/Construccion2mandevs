@@ -40,18 +40,5 @@ public class MedicalRecordService {
     }
 
 
-    // Consultar historia clínica
-    public MedicalRecord getByPatient(Patient patient) throws Exception {
-        patient = patientPort.findByDocument(patient);
-        if (patient == null) {
-            throw new Exception("El paciente no existe");
-        }
-
-        MedicalRecord record = medicalRecordPort.findByPatient(patient);
-        if (record == null) {
-            throw new Exception("El paciente no tiene historia clínica registrada");
-        }
-
-        return record;
-    }
+    
 }
