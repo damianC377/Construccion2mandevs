@@ -2,7 +2,6 @@ package app.domain.services;
 
 import app.domain.model.EmergencyContact;
 import app.domain.model.Patient;
-import app.domain.model.User;
 import app.domain.model.enums.Role;
 import app.domain.port.EmergencyContactPort;
 import app.domain.port.PatientPort;
@@ -11,9 +10,10 @@ public class CreateEmergencyContactService {
 
     private PatientPort patientPort;
     private EmergencyContactPort emergencyContactPort;
+    private UserRequireRoleService userRequireRole;
 
     // Crear contacto de emergencia
-    public void create(EmergencyContact contact, Patient patient, User adminUser) throws Exception {
+    public void create(EmergencyContact contact, Patient patient) throws Exception {
         // Validar si el paciente existe
         patient = patientPort.findByDocument(patient);
         if (patient == null) {
@@ -21,9 +21,7 @@ public class CreateEmergencyContactService {
         }
 
         // Validar que lo registre personal administrativo
-        if (adminUser== null || !adminUser.getRole().equals(Role.ADMINISTRATIVE_STAFF)) {
-            throw new Exception("El contacto de emergencia solo puede ser registrado por personal administrativo");
-        }
+        userRequireRole.requireRole(Role.ADMINISTRATIVE_STAFF);
 
         // Validar que el paciente no tenga contacto registrado
         if (patient.getEmergencyContact() != null) {

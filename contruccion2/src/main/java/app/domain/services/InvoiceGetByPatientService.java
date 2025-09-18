@@ -4,6 +4,7 @@ import java.util.List;
 
 import app.domain.model.Invoice;
 import app.domain.model.Patient;
+import app.domain.model.enums.Role;
 import app.domain.port.InvoicePort;
 import app.domain.port.PatientPort;
 
@@ -11,6 +12,7 @@ public class InvoiceGetByPatientService {
 	
 	private InvoicePort invoicePort;
 	private PatientPort patientPort;
+	private UserRequireRoleService userRequireRole;
 	
 	 // Consultar facturas de un paciente
     public List<Invoice> getByPatient(Patient patient) throws Exception {
@@ -23,6 +25,9 @@ public class InvoiceGetByPatientService {
         if (invoices == null || invoices.isEmpty()) {
             throw new Exception("El paciente no tiene facturas registradas");
         }
+        
+     // Validar que lo registre personal administrativo
+        userRequireRole.requireRole(Role.ADMINISTRATIVE_STAFF);
 
         return invoices;
     }

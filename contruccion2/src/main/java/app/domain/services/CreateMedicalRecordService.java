@@ -8,11 +8,12 @@ import app.domain.port.MedicalRecordPort;
 import app.domain.port.PatientPort;
 import app.domain.port.UserPort;
 
-public class MedicalRecordService {
+public class CreateMedicalRecordService {
 
     private PatientPort patientPort;
     private MedicalRecordPort medicalRecordPort;
     private UserPort userPort;
+    private UserRequireRoleService userRequireRole;
 
     // Crear historia clínica
     public void create(MedicalRecord medicalRecord) throws Exception {
@@ -24,9 +25,7 @@ public class MedicalRecordService {
 
         // Validar que el registro lo haga un doctor
         User doctor = userPort.findByDocument(medicalRecord.getDoctor());
-        if (doctor == null || !doctor.getRole().equals(Role.DOCTOR)) {
-            throw new Exception("La historia clínica solo puede ser registrada por un doctor");
-        }
+        userRequireRole.requireRole(Role.DOCTOR);
 
         // Validar que el paciente no tenga ya historia clínica
         if (medicalRecordPort.findByPatient(patient) != null) {

@@ -2,11 +2,13 @@ package app.domain.services;
 
 import app.domain.model.HealthInsurance;
 import app.domain.model.Patient;
+import app.domain.model.enums.Role;
 import app.domain.port.PatientPort;
 
 public class HealthInsuranceGetByPatientService {
 	
 	private PatientPort patientPort;
+	private UserRequireRoleService userRequireRole;
 	
 	   // Consultar seguro de salud por paciente
     public HealthInsurance getByPatient(Patient patient) throws Exception {
@@ -15,6 +17,9 @@ public class HealthInsuranceGetByPatientService {
         if (patient == null || patient.getHealthInsurance() == null) {
             throw new Exception("El paciente no tiene seguro registrado");
         }
+        
+     // Validar que lo registre personal administrativo
+        userRequireRole.requireRole(Role.ADMINISTRATIVE_STAFF);
 
         return patient.getHealthInsurance();
     }

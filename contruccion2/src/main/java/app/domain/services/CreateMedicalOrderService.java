@@ -13,6 +13,7 @@ import app.domain.port.UserPort;
 public class CreateMedicalOrderService {
 	 private MedicalOrderPort medicalOrderPort;
 	private PatientPort patientPort;
+	private UserRequireRoleService userRequireRole;
 	 private UserPort userPort;
 	 
 	  public void createMedicalOrder(MedicalOrder order) throws Exception{
@@ -23,9 +24,9 @@ public class CreateMedicalOrderService {
 	        }
 	      //Verificacion de personal, cambiar al metodo require role
 	        User doctor = userPort.findByDocument(order.getDoctor());
-	        if (doctor == null || !doctor.getRole().equals(Role.DOCTOR)) {
-	            throw new Exception("Solo personal autorizado ");
-	        }
+	        
+	        userRequireRole.requireRole(Role.DOCTOR);
+	        
 	        order.setPatient(patient);
 	        order.setDoctor(doctor);
 

@@ -3,7 +3,6 @@ package app.domain.services;
 import app.domain.model.Invoice;
 import app.domain.model.Patient;
 import app.domain.model.enums.Role;
-import app.domain.model.User;
 import app.domain.port.InvoicePort;
 import app.domain.port.PatientPort;
 
@@ -12,10 +11,11 @@ import app.domain.port.PatientPort;
 public class CreateInvoiceService {
     private InvoicePort invoicePort;
     private PatientPort patientPort;
+    private UserRequireRoleService userRequireRole;
 
 
     //Crear Factura
-    public void createInvoice(Invoice invoice, User adminUser) throws Exception{
+    public void createInvoice(Invoice invoice) throws Exception{
         if (invoice == null) {
             throw new Exception("La factura no puede ser nula");
         }
@@ -27,9 +27,7 @@ public class CreateInvoiceService {
         }
 
         // Validar personal
-        if (adminUser == null || adminUser.getRole() != Role.ADMINISTRATIVE_STAFF) {
-            throw new Exception("Solo personal administrativo puede crear facturas");
-        }
+        userRequireRole.requireRole(Role.ADMINISTRATIVE_STAFF);
 
         //Validando que este el doctor asignado
         if(invoice.getDoctor() == null){

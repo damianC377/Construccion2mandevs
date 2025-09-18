@@ -12,7 +12,7 @@ public class UserRequireRoleService {
 	public void requireRole(Role requiredRole) throws Exception {
 		userRequireAuthenticated.requireAuthenticated();
 		if(currentUser.getCurrent().getRole() != requiredRole) {
-			throw new Exception("Usuario no autorizado");
+			throw new Exception("Usuario no autorizado, debe tener el rol de: " + requiredRole);
 		}
 	}
 }

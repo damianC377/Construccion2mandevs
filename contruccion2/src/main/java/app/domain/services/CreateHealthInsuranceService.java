@@ -2,7 +2,6 @@ package app.domain.services;
 
 import app.domain.model.HealthInsurance;
 import app.domain.model.Patient;
-import app.domain.model.User;
 import app.domain.model.enums.Role;
 import app.domain.port.HealthInsurancePort;
 import app.domain.port.PatientPort;
@@ -12,9 +11,10 @@ public class CreateHealthInsuranceService {
 
     private PatientPort patientPort;
     private HealthInsurancePort healthInsurancePort;
+    private UserRequireRoleService userRequireRole;
 
     // Crear seguro de salud
-    public void create(HealthInsurance healthInsurance, Patient patient, User adminUser) throws Exception {
+    public void create(HealthInsurance healthInsurance, Patient patient) throws Exception {
         // Validar si el paciente existe
         patient = patientPort.findByDocument(patient);
         if (patient == null) {
@@ -22,9 +22,7 @@ public class CreateHealthInsuranceService {
         }
 
         // Validar que lo registre personal administrativo
-        if (adminUser == null || !adminUser.getRole().equals(Role.ADMINISTRATIVE_STAFF)) {
-            throw new Exception("El seguro solo puede ser registrado por personal administrativo");
-        }
+        userRequireRole.requireRole(Role.ADMINISTRATIVE_STAFF);
 
         // Validar que el paciente no tenga seguro registrado
         if (patient.getHealthInsurance() != null) {
