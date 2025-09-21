@@ -1,11 +1,17 @@
 package app.domain.model;
 
 public class EmergencyContact {
+    private Patient patient;
     private String Name;
     private String relationship;
     private String phoneNumber;
 
     // Getters
+
+    public Patient getPatient() {
+        return patient;
+    }
+
     public String getName() {
         return Name;
     }
@@ -19,6 +25,11 @@ public class EmergencyContact {
     }
 
     // Setters
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
     public void setName(String name) {
         Name = name;
     }

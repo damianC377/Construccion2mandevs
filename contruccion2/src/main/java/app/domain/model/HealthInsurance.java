@@ -3,12 +3,18 @@ package app.domain.model;
 import java.sql.Date;
 
 public class HealthInsurance {
+    private Patient patient;
     private String companyName;
     private String policyNumber;
     private boolean active;    // true = active, false = inactive
     private Date endDate;
 
     // Getters
+
+    public Patient getPatient() {
+        return patient;
+    }
+
     public String getCompanyName() {
         return companyName;
     }
@@ -26,6 +32,11 @@ public class HealthInsurance {
     }
 
     // Setters
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }

@@ -12,8 +12,7 @@ public class Patient {
     private String phoneNumber;
     private String emailAddress;
     private MedicalRecord medicalRecord;
-    private EmergencyContact emergencyContact;
-    private HealthInsurance healthInsurance;
+
     
 
     // Getters
