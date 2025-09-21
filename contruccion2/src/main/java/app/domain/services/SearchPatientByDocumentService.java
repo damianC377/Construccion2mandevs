@@ -10,7 +10,7 @@ public class SearchPatientByDocumentService {
 	private UserRequireRoleService userRequireRole;
 	
     // Consultar paciente
-    public Patient getByDocument(Patient patient) throws Exception {
+    public Patient search(Patient patient) throws Exception {
         // Buscar paciente por documento
         Patient foundPatient = patientPort.findByDocument(patient);
         if (foundPatient == null) {

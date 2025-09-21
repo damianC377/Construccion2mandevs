@@ -13,7 +13,7 @@ public class SearchMedicalRecordByPatientService {
     private UserRequireAnyRoleService RequireAnyRoleService;
 	
 	// Consultar historia clínica por paciente
-    public MedicalRecord getByPatient(Patient patient) throws Exception {
+    public MedicalRecord search(Patient patient) throws Exception {
         // Validar si el paciente existe
         patient = patientPort.findByDocument(patient);
         if (patient == null) {

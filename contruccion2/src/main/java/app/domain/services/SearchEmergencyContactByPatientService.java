@@ -10,7 +10,7 @@ public class SearchEmergencyContactByPatientService {
 	private UserRequireRoleService userRequireRole;
 	
 	// Consultar contacto de emergencia por paciente
-    public EmergencyContact getByPatient(Patient patient) throws Exception {
+    public EmergencyContact search(Patient patient) throws Exception {
         // Validar si el paciente existe y tiene contacto
         patient = patientPort.findByDocument(patient);
         if (patient == null || patient.getEmergencyContact() == null) {

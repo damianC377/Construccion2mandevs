@@ -11,7 +11,7 @@ public class SearchHealthInsuranceByPatientService {
 	private UserRequireRoleService userRequireRole;
 	
 	   // Consultar seguro de salud por paciente
-    public HealthInsurance getByPatient(Patient patient) throws Exception {
+    public HealthInsurance search(Patient patient) throws Exception {
         // Validar si el paciente existe y tiene seguro
         patient = patientPort.findByDocument(patient);
         if (patient == null || patient.getHealthInsurance() == null) {

@@ -15,7 +15,7 @@ public class SearchInvoiceByPatientService {
 	private UserRequireRoleService userRequireRole;
 	
 	 // Consultar facturas de un paciente
-    public List<Invoice> getByPatient(Patient patient) throws Exception {
+    public List<Invoice> search(Patient patient) throws Exception {
         // Validar si el paciente existe
         patient = patientPort.findByDocument(patient);
         if (patient == null) {

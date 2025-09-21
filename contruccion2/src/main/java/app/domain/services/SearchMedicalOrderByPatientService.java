@@ -20,7 +20,7 @@ public class SearchMedicalOrderByPatientService {
 
 
     // Consultar las órdenes médicas de un paciente
-    public List<MedicalOrder> getByPatient(Patient patient) throws Exception {
+    public List<MedicalOrder> search(Patient patient) throws Exception {
         // Validar si el paciente existe
         patient = patientPort.findByDocument(patient);
         if (patient == null) {
