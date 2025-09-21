@@ -5,7 +5,7 @@ import app.domain.model.Patient;
 import app.domain.model.enums.Role;
 import app.domain.port.PatientPort;
 
-public class HealthInsuranceGetByPatientService {
+public class SearchHealthInsuranceByPatientService {
 	
 	private PatientPort patientPort;
 	private UserRequireRoleService userRequireRole;

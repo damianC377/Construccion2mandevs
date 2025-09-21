@@ -4,7 +4,7 @@ import app.domain.model.User;
 import app.domain.model.enums.Role;
 import app.domain.port.UserPort;
 
-public class updateUserService {
+public class UpdateUserService {
 	
 	private UserPort userport;
 	private UserRequireRoleService userRequireRole;

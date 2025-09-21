@@ -11,7 +11,7 @@ import app.domain.port.PatientPort;
 import java.util.List;
 
 
-public class MedicalOrderGetPatientService {
+public class SearchMedicalOrderByPatientService {
     private MedicalOrderPort medicalOrderPort;
     private PatientPort patientPort;
     private UserRequireAnyRoleService RequireAnyRoleService;
@@ -21,6 +21,7 @@ public class MedicalOrderGetPatientService {
 
     // Consultar las órdenes médicas de un paciente
     public List<MedicalOrder> getByPatient(Patient patient) throws Exception {
+        // Validar si el paciente existe
         patient = patientPort.findByDocument(patient);
         if (patient == null) {
             throw new Exception("El paciente no existe");

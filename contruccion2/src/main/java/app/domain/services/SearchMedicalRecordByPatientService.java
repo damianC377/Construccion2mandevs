@@ -6,14 +6,15 @@ import app.domain.model.enums.Role;
 import app.domain.port.MedicalRecordPort;
 import app.domain.port.PatientPort;
 
-public class MedicalRecordGetByPatientService {
+public class SearchMedicalRecordByPatientService {
 	
     private PatientPort patientPort;
     private MedicalRecordPort medicalRecordPort;
     private UserRequireAnyRoleService RequireAnyRoleService;
 	
-	// Consultar historia clínica
+	// Consultar historia clínica por paciente
     public MedicalRecord getByPatient(Patient patient) throws Exception {
+        // Validar si el paciente existe
         patient = patientPort.findByDocument(patient);
         if (patient == null) {
             throw new Exception("El paciente no existe");

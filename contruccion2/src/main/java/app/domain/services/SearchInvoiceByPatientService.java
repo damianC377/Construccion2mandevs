@@ -8,7 +8,7 @@ import app.domain.model.enums.Role;
 import app.domain.port.InvoicePort;
 import app.domain.port.PatientPort;
 
-public class InvoiceGetByPatientService {
+public class SearchInvoiceByPatientService {
 	
 	private InvoicePort invoicePort;
 	private PatientPort patientPort;
@@ -16,6 +16,7 @@ public class InvoiceGetByPatientService {
 	
 	 // Consultar facturas de un paciente
     public List<Invoice> getByPatient(Patient patient) throws Exception {
+        // Validar si el paciente existe
         patient = patientPort.findByDocument(patient);
         if (patient == null) {
             throw new Exception("El paciente no existe");
