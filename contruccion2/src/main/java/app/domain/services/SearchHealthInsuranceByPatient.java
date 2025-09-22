@@ -5,10 +5,10 @@ import app.domain.model.Patient;
 import app.domain.model.enums.Role;
 import app.domain.port.PatientPort;
 
-public class SearchHealthInsurance {
+public class SearchHealthInsuranceByPatient {
 	
 	private PatientPort patientPort;
-	private UserRequireRoleService userRequireRole;
+	private UserRequireRole userRequireRole;
 	
 	   // Consultar seguro de salud por paciente
     public HealthInsurance search(Patient patient) throws Exception {

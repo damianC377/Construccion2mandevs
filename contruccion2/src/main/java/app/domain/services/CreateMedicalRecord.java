@@ -8,12 +8,12 @@ import app.domain.port.MedicalRecordPort;
 import app.domain.port.PatientPort;
 import app.domain.port.UserPort;
 
-public class CreateMedicalRecordService {
+public class CreateMedicalRecord {
 
     private PatientPort patientPort;
     private MedicalRecordPort medicalRecordPort;
     private UserPort userPort;
-    private UserRequireRoleService userRequireRole;
+    private UserRequireRole userRequireRole;
 
     // Crear historia clínica
     public void create(MedicalRecord medicalRecord) throws Exception {

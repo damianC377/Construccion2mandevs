@@ -8,14 +8,14 @@ import app.domain.port.PatientPort;
 
 
 
-public class CreateInvoiceService {
+public class CreateInvoice {
     private InvoicePort invoicePort;
     private PatientPort patientPort;
-    private UserRequireRoleService userRequireRole;
+    private UserRequireRole userRequireRole;
 
 
     //Crear Factura
-    public void createInvoice(Invoice invoice) throws Exception{
+    public void create(Invoice invoice) throws Exception{
         if (invoice == null) {
             throw new Exception("La factura no puede ser nula");
         }

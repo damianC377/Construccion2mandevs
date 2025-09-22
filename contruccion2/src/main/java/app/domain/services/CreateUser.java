@@ -4,10 +4,10 @@ import app.domain.model.User;
 import app.domain.model.enums.Role;
 import app.domain.port.UserPort;
 
-public class CreateUserService {
+public class CreateUser {
 	
 	private UserPort userport;
-	private UserRequireRoleService userRequireRole;
+	private UserRequireRole userRequireRole;
 	
 	//Crear un usuario
 		public void createUser(User user) throws Exception {

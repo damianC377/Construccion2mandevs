@@ -6,11 +6,11 @@ import app.domain.model.enums.Role;
 import app.domain.port.MedicalRecordPort;
 import app.domain.port.PatientPort;
 
-public class SearchMedicalRecord {
+public class SearchMedicalRecordByPatient {
 	
     private PatientPort patientPort;
     private MedicalRecordPort medicalRecordPort;
-    private UserRequireAnyRoleService RequireAnyRoleService;
+    private UserRequireAnyRole RequireAnyRoleService;
 	
 	// Consultar historia clínica por paciente
     public MedicalRecord search(Patient patient) throws Exception {

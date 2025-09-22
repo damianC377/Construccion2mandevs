@@ -7,11 +7,11 @@ import app.domain.port.HealthInsurancePort;
 import app.domain.port.PatientPort;
 
 
-public class CreateHealthInsuranceService {
+public class CreateHealthInsurance {
 
     private PatientPort patientPort;
     private HealthInsurancePort healthInsurancePort;
-    private UserRequireRoleService userRequireRole;
+    private UserRequireRole userRequireRole;
 
     // Crear seguro de salud
     public void create(HealthInsurance healthInsurance) throws Exception {

@@ -1,0 +1,38 @@
+package app.domain.services;
+
+import app.domain.model.ProcedureInventory;
+import app.domain.model.enums.Role;
+import app.domain.port.ProcedureInventoryPort;
+
+public class CreateProcedureInventory {
+
+    private UserRequireRole userRequireRole;
+    private ProcedureInventoryPort procedureInventoryPort;
+
+    public void create(ProcedureInventory procedure) throws Exception {
+        // Validar rol
+        userRequireRole.requireRole(Role.SUPPORT);
+
+        // Validar que no esté vacío
+        if (procedure == null || procedure.getName() == null) {
+            throw new Exception("El nombre del procedimiento es obligatorio");
+        }
+
+        // Validar costo
+        if (procedure.getCost() <= 0) {
+            throw new Exception("El costo debe ser mayor que cero");
+        }
+
+        // Validar duplicados
+        ProcedureInventory existing = procedureInventoryPort.findById(procedure);
+        if (existing != null) {
+            throw new Exception("El procedimiento ya está registrado en el inventario");
+        }
+
+        // Guardar en inventario
+        procedureInventoryPort.save(procedure);
+    }
+
+
+}
+

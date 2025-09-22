@@ -10,8 +10,6 @@ public interface PatientPort {
 	// Guardar paciente
 	public void save(Patient patient) throws Exception;
 
-    // Actualizar paciente
-    public void update(Patient patient) throws Exception;
     }
 
 

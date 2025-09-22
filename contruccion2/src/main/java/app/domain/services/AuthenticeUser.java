@@ -3,10 +3,10 @@ package app.domain.services;
 import app.domain.model.User;
 import app.domain.port.UserPort;
 
-public class AuthenticeUserService {
+public class AuthenticeUser {
 	
 	private UserPort userport;
-	private UserLoginservice userLogin;
+	private UserLogin userLogin;
 	
 	public User authentice(String userName, String password) throws Exception {
 		

@@ -4,10 +4,10 @@ import app.domain.model.User;
 import app.domain.model.enums.Role;
 import app.domain.port.UserPort;
 
-public class UpdateUserService {
+public class UpdateUser {
 	
 	private UserPort userport;
-	private UserRequireRoleService userRequireRole;
+	private UserRequireRole userRequireRole;
 	
 	//Actualizar datos del usuario
 		public void updateUser(long document, User newdata) throws Exception{

@@ -6,18 +6,13 @@ import app.domain.model.Patient;
 import app.domain.model.enums.Role;
 import app.domain.port.MedicalOrderPort;
 import app.domain.port.PatientPort;
-
-
 import java.util.List;
 
 
-public class SearchMedicalOrder {
+public class SearchMedicalOrderByPatient {
     private MedicalOrderPort medicalOrderPort;
     private PatientPort patientPort;
-    private UserRequireAnyRoleService RequireAnyRoleService;
-
-
-
+    private UserRequireAnyRole RequireAnyRoleService;
 
     // Consultar las órdenes médicas de un paciente
     public List<MedicalOrder> search(Patient patient) throws Exception {

@@ -6,11 +6,11 @@ import app.domain.model.enums.Role;
 import app.domain.port.EmergencyContactPort;
 import app.domain.port.PatientPort;
 
-public class CreateEmergencyContactService {
+public class CreateEmergencyContact {
 
     private PatientPort patientPort;
     private EmergencyContactPort emergencyContactPort;
-    private UserRequireRoleService userRequireRole;
+    private UserRequireRole userRequireRole;
 
     // Crear contacto de emergencia
     public void create(EmergencyContact contact) throws Exception {

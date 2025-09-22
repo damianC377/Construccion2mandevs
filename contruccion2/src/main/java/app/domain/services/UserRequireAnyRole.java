@@ -2,10 +2,10 @@ package app.domain.services;
 
 import app.domain.model.enums.Role;
 
-public class UserRequireAnyRoleService {
+public class UserRequireAnyRole {
 	
-	private UserLoginservice currentUser;
-	private	UserRequireAuthenticatedService userRequireAuthenticated;
+	private UserLogin currentUser;
+	private UserRequireAuthenticated userRequireAuthenticated;
 	
 
 	public void requireAnyRole(Role...roles) throws Exception {

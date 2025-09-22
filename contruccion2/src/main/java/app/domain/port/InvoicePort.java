@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface InvoicePort {
     //Crea la factura
-    public void createInvoice(Invoice invoice) throws Exception;
+    public void create(Invoice invoice) throws Exception;
 
     //Guarda la factura
     public void save(Invoice invoice) throws Exception;

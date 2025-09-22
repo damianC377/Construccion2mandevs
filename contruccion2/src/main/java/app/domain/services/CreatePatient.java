@@ -4,11 +4,11 @@ import app.domain.model.Patient;
 import app.domain.model.enums.Role;
 import app.domain.port.PatientPort;
 
-public class CreatePatientService {
+public class CreatePatient {
 
 
     private PatientPort patientPort;
-    private UserRequireRoleService userRequireRole;
+    private UserRequireRole userRequireRole;
 
     // Crear paciente
     public void create(Patient patient) throws Exception {

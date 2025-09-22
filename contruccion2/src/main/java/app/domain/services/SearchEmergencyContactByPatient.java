@@ -5,9 +5,9 @@ import app.domain.model.Patient;
 import app.domain.model.enums.Role;
 import app.domain.port.PatientPort;
 
-public class SearchEmergencyContact {
+public class SearchEmergencyContactByPatient {
 	private PatientPort patientPort;
-	private UserRequireRoleService userRequireRole;
+	private UserRequireRole userRequireRole;
 	
 	// Consultar contacto de emergencia por paciente
     public EmergencyContact search(Patient patient) throws Exception {

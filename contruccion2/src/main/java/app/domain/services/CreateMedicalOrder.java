@@ -10,13 +10,13 @@ import app.domain.port.MedicalOrderPort;
 import app.domain.port.PatientPort;
 import app.domain.port.UserPort;
 
-public class CreateMedicalOrderService {
+public class CreateMedicalOrder {
 	 private MedicalOrderPort medicalOrderPort;
 	private PatientPort patientPort;
-	private UserRequireRoleService userRequireRole;
+	private UserRequireRole userRequireRole;
 	 private UserPort userPort;
 	 
-	  public void createMedicalOrder(MedicalOrder order) throws Exception{
+	  public void create(MedicalOrder order) throws Exception{
 		  // Validar si el paciente existe
 	        Patient patient = patientPort.findByDocument(order.getPatient());
 	        if (patient == null) {

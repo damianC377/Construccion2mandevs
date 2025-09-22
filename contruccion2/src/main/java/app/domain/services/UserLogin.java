@@ -2,7 +2,7 @@ package app.domain.services;
 
 import app.domain.model.User;
 
-public class UserLoginservice {
+public class UserLogin {
 	
 	//Variable que se usa a futuro para guardar la sesión
 	private User currentUser;

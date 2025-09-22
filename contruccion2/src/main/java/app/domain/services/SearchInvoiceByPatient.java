@@ -8,11 +8,11 @@ import app.domain.model.enums.Role;
 import app.domain.port.InvoicePort;
 import app.domain.port.PatientPort;
 
-public class SearchInvoice {
+public class SearchInvoiceByPatient {
 	
 	private InvoicePort invoicePort;
 	private PatientPort patientPort;
-	private UserRequireRoleService userRequireRole;
+	private UserRequireRole userRequireRole;
 	
 	 // Consultar facturas de un paciente
     public List<Invoice> search(Patient patient) throws Exception {
