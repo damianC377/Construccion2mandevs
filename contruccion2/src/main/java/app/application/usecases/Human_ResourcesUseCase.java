@@ -2,13 +2,13 @@ package app.application.usecases;
 
 import app.domain.model.User;
 import app.domain.model.enums.Role;
-import app.domain.services.CreateUserService;
-import app.domain.services.UpdateUserService;
+import app.domain.services.CreateUser;
+import app.domain.services.UpdateUser;
 
 public class Human_ResourcesUseCase {
 	
-	private CreateUserService createUser;
-	private UpdateUserService updateUserService;
+	private CreateUser createUser;
+	private UpdateUser updateUser;
 	
 	public void createDoctor(User user) throws Exception {
 		user.setRole(Role.DOCTOR);
@@ -41,7 +41,7 @@ public class Human_ResourcesUseCase {
 	}
 
 	public void updateUser(long document, User newdata) throws Exception{
-		updateUserService.updateUser(document, newdata);
+		updateUser.updateUser(document, newdata);
 	}
 
 	

@@ -10,50 +10,49 @@ import java.util.List;
 
 public class Administrative_StaffUserCase {
 
-    private CreatePatientService createPatientService;
-    private SearchPatient searchPatientByDocumentService;
+    private CreatePatient createPatient;
+    private SearchPatientByDocument searchPatientByDocument;
 
-    private CreateEmergencyContactService createEmergencyContactService;
-    private SearchEmergencyContact searchEmergencyContactByPatientService;
+    private CreateEmergencyContact createEmergencyContact;
+    private SearchEmergencyContactByPatient searchEmergencyContact;
 
-    private CreateHealthInsuranceService createHealthInsuranceService;
-    private SearchHealthInsurance searchHealthInsuranceByPatientService;
+    private CreateHealthInsurance createHealthInsurance;
+    private SearchHealthInsuranceByPatient searchHealthInsuranceByPatient;
 
-    private CreateInvoiceService createInvoiceService;
-    private SearchInvoice searchInvoiceByPatientService;
+    private CreateInvoice createInvoice;
+    private SearchInvoiceByPatient searchInvoiceByPatient;
 
     // Crear y buscar paciente
     public void createPatient (Patient patient) throws Exception{
-        createPatientService.create(patient);
+        createPatient.create(patient);
     }
     public Patient searchPatientByDocument(Patient patient) throws Exception {
-        return searchPatientByDocumentService.search(patient);
+        return searchPatientByDocument.search(patient);
     }
 
 
     // Crear y buscar contacto de emergencia
     public void createEmergencyContact (EmergencyContact contact) throws Exception{
-        createEmergencyContactService.create(contact);
+        createEmergencyContact.create(contact);
     }
     public EmergencyContact searchEmergencyContact(Patient patient) throws Exception{
-        return searchEmergencyContactByPatientService.search(patient);
+        return searchEmergencyContact.search(patient);
     }
 
     // Crear y buscar seguro médico
     public void createHealthInsurance (HealthInsurance healthInsurance) throws Exception{
-        createHealthInsuranceService.create(healthInsurance);
+        createHealthInsurance.create(healthInsurance);
     }
     public HealthInsurance searchHealthInsurance (Patient patient) throws Exception{
-        return searchHealthInsuranceByPatientService.search(patient);
+        return searchHealthInsuranceByPatient.search(patient);
     }
 
     // Crear y buscar factura
     public void createInvoice(Invoice invoice) throws Exception {
-        createInvoiceService.createInvoice(invoice);
+        createInvoice.create(invoice);
     }
-
     public List<Invoice> searchInvoice(Patient patient) throws Exception {
-        return searchInvoiceByPatientService.search(patient);
+        return searchInvoiceByPatient.search(patient);
     }
 
 

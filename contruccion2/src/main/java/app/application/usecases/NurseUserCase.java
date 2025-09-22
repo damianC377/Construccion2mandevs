@@ -1,14 +1,18 @@
 package app.application.usecases;
 
-import app.domain.model.MedicalOrder;
-import app.domain.model.MedicalRecord;
-import app.domain.model.Patient;
-import app.domain.services.*;
+import app.domain.services.CreateMedicalOrder;
+import app.domain.services.CreateMedicalRecord;
+import app.domain.services.SearchMedicalOrderByPatient;
+import app.domain.services.SearchMedicalRecordByPatient;
+import app.domain.services.SearchPatientByDocument;
 
 import java.util.List;
 
-public class DoctorUserCase {
+import app.domain.model.MedicalOrder;
+import app.domain.model.MedicalRecord;
+import app.domain.model.Patient;
 
+public class NurseUserCase {
     private CreateMedicalRecord createMedicalRecord;
     private SearchMedicalRecordByPatient searchMedicalRecordByPatient;
 
@@ -36,7 +40,6 @@ public class DoctorUserCase {
     // Buscar paciente
     public Patient searchPatientByDocument(Patient patient) throws Exception{
         return searchPatientByDocument.search(patient);
+
     }
-
-
 }
