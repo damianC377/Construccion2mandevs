@@ -11,6 +11,7 @@ public class UpdateUserService {
 	
 	//Actualizar datos del usuario
 		public void updateUser(long document, User newdata) throws Exception{
+
 			
 			//Se utiliza una variable para almacenarlo
 			User existing = new User();
@@ -20,7 +21,7 @@ public class UpdateUserService {
 			
 			//Validamos el documento
 			if ( user == null) {
-				throw new Exception("No existe una persona con esa");
+				throw new Exception("No existe una persona");
 			}
 			
 			//Se validan que los datos escritos no esten vacios
@@ -42,6 +43,10 @@ public class UpdateUserService {
 			
 			if(newdata.getAddress() != null) {
 				existing.setAddress(newdata.getAddress());
+			}
+
+			if (newdata.getRole() != existing.getRole()) {
+				user.setRole(newdata.getRole());
 			}
 			
 			userRequireRole.requireRole(Role.HUMAN_RESOURCES);

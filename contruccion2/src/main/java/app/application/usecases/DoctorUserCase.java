@@ -1,4 +1,4 @@
-package app.application.usercases;
+package app.application.usecases;
 
 import app.domain.model.MedicalOrder;
 import app.domain.model.MedicalRecord;
