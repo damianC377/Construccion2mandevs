@@ -8,7 +8,7 @@ import app.domain.model.enums.Role;
 import app.domain.port.InvoicePort;
 import app.domain.port.PatientPort;
 
-public class SearchInvoiceByPatientService {
+public class SearchInvoice {
 	
 	private InvoicePort invoicePort;
 	private PatientPort patientPort;

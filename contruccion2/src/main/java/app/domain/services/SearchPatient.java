@@ -4,7 +4,7 @@ import app.domain.model.Patient;
 import app.domain.model.enums.Role;
 import app.domain.port.PatientPort;
 
-public class SearchPatientByDocumentService {
+public class SearchPatient {
 	
 	private PatientPort patientPort;
 	private UserRequireRoleService userRequireRole;

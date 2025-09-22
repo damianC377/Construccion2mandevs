@@ -11,16 +11,16 @@ import java.util.List;
 public class Administrative_StaffUserCase {
 
     private CreatePatientService createPatientService;
-    private SearchPatientByDocumentService searchPatientByDocumentService;
+    private SearchPatient searchPatientByDocumentService;
 
     private CreateEmergencyContactService createEmergencyContactService;
-    private SearchEmergencyContactByPatientService searchEmergencyContactByPatientService;
+    private SearchEmergencyContact searchEmergencyContactByPatientService;
 
     private CreateHealthInsuranceService createHealthInsuranceService;
-    private SearchHealthInsuranceByPatientService searchHealthInsuranceByPatientService;
+    private SearchHealthInsurance searchHealthInsuranceByPatientService;
 
     private CreateInvoiceService createInvoiceService;
-    private SearchInvoiceByPatientService searchInvoiceByPatientService;
+    private SearchInvoice searchInvoiceByPatientService;
 
     // Crear y buscar paciente
     public void createPatient (Patient patient) throws Exception{

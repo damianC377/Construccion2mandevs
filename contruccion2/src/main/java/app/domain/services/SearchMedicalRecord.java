@@ -6,7 +6,7 @@ import app.domain.model.enums.Role;
 import app.domain.port.MedicalRecordPort;
 import app.domain.port.PatientPort;
 
-public class SearchMedicalRecordByPatientService {
+public class SearchMedicalRecord {
 	
     private PatientPort patientPort;
     private MedicalRecordPort medicalRecordPort;

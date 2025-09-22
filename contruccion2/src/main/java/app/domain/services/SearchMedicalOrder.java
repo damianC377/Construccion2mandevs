@@ -11,7 +11,7 @@ import app.domain.port.PatientPort;
 import java.util.List;
 
 
-public class SearchMedicalOrderByPatientService {
+public class SearchMedicalOrder {
     private MedicalOrderPort medicalOrderPort;
     private PatientPort patientPort;
     private UserRequireAnyRoleService RequireAnyRoleService;
