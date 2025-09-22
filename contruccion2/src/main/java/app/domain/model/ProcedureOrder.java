@@ -5,7 +5,7 @@ public class ProcedureOrder extends Order {
     private int quantity;
     private String frequency;
     private boolean requiresSpecialist;
-    private Specialist specialist;
+    private String specialist;
     
     // Getters
     
@@ -26,7 +26,7 @@ public class ProcedureOrder extends Order {
         return requiresSpecialist;
     }
 
-    public Specialist getSpecialist() {
+    public String getSpecialist() {
         return specialist;
     }
 
@@ -51,7 +51,7 @@ public class ProcedureOrder extends Order {
         this.requiresSpecialist = requiresSpecialist;
     }
 
-    public void setSpecialist(Specialist specialist) {
+    public void setSpecialist(String  specialist) {
         this.specialist = specialist;
     }
 
