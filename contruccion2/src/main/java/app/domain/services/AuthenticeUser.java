@@ -10,8 +10,10 @@ public class AuthenticeUser {
 	
 	public User authentice(String userName, String password) throws Exception {
 		
+		
+		
 		User existing = new User();
-		existing.setUserName(userName);
+		existing.setUserName(userName.trim().toLowerCase());
 		
 		User user = userport.findByuserName(existing);
 		
@@ -20,6 +22,7 @@ public class AuthenticeUser {
 		}
 		
 		if(!user.getPassword().equals(password)) {
+			userLogin.registerFailedAttempts();
 			throw new Exception("Contraseña incorrecta");
 		}
 		

@@ -20,8 +20,12 @@ public class UserValidator extends SimpleValidator {
         return stringValidator("número de teléfono", value);
     }
 
-    public String dateOfBirthValidator(String value) throws Exception {
-        return stringValidator("fecha de nacimiento", value);
+    public Date dateOfBirthValidator(String value) throws Exception {
+        try {
+        	return Date.valueOf(value);
+        } catch(IllegalArgumentException e){
+        	throw new Exception("Formato de fecha invalido. Usa yyyy-mm-dd");
+        }
     }
 
     public String addressValidator(String value) throws Exception {

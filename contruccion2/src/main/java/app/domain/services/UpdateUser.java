@@ -45,7 +45,7 @@ public class UpdateUser {
 				existing.setAddress(newdata.getAddress());
 			}
 
-			if (newdata.getRole() != existing.getRole()) {
+			if (newdata.getRole() != existing.getRole() && newdata.getRole() != null) {
 				user.setRole(newdata.getRole());
 			}
 			

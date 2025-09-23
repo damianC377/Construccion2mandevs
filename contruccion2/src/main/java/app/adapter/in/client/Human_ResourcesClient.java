@@ -2,14 +2,22 @@ package app.adapter.in.client;
 
 import app.adapter.in.builder.UserBuilder;
 import app.application.usecases.Human_ResourcesUseCase;
+import app.application.usecases.LoginUseCase;
 import app.domain.model.User;
 
 import java.util.Scanner;
 
 public class Human_ResourcesClient {
-
-    // Mostrar menu
+	
+	// Mostrar menu_create
     private static final String MENU = """
+            Ingrese una de las opciones:
+             1. Crear usuario
+             2. Actualizar usuario
+             3.	Salir""";
+
+    // Mostrar menu_create
+    private static final String MENU_create = """
             Ingrese una de las opciones:
              1. Crear doctor
              2. Crear enfermera
@@ -22,65 +30,90 @@ public class Human_ResourcesClient {
     private static Scanner sc = new Scanner(System.in);
     private Human_ResourcesUseCase humanResourcesUseCase;
     private UserBuilder userBuilder;
+    private LoginUseCase loginUseCase;
 
     // Iniciar sesión y mantener el menú
     public void session() {
-        boolean session = true;
-        while (session) {
-            session = menu();
+        while (loginUseCase.getUserCurrent() != null) {
+        menu();
         }
     }
+    
+    private void menu() {
+    	try {
+    		 System.out.println(MENU);
+             String option = sc.nextLine();
+    		
+             
+             switch (option) {
+			case "1": {
+				menu_create();
+				
+			}
+			case "2": {
+				
+			}
+			default:
+				System.out.println("Ingrese una opción válida.");
+                break;
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+    }
 
-    // Menu de opciones
-    private boolean menu() {
+    // Menu de opciones de creacion de usuarios
+    private void menu_create() {
         try {
-            System.out.println(MENU);
-            String option = sc.nextLine();
+            System.out.println(MENU_create);
+            String option2 = sc.nextLine();
 
-            switch (option) {
+            switch (option2) {
                 case "1": {
                     User user = readInfoFromUser();
                     humanResourcesUseCase.createDoctor(user);
-                    return true;
+                    break;
                 }
                 case "2": {
                     User user = readInfoFromUser();
                     humanResourcesUseCase.createNurse(user);
-                    return true;
+                    break;
                 }
                 case "3": {
                     User user = readInfoFromUser();
                     humanResourcesUseCase.createADMINISTRATOR(user);
-                    return true;
+                    break;
                 }
                 case "4": {
                     User user = readInfoFromUser();
                     humanResourcesUseCase.createADMINISTRATIVE_STAFF(user);
-                    return true;
+                    break;
                 }
                 case "5": {
                     User user = readInfoFromUser();
                     humanResourcesUseCase.createSUPPORT(user);
-                    return true;
+                    break;
                 }
                 case "6": {
                     User user = readInfoFromUser();
                     humanResourcesUseCase.createHUMAN_RESOURCES(user);
-                    return true;
+                    break;
                 }
                 case "7": {
                     System.out.println("Hasta luego, cerrando sesión...");
-                    return false;
+                    loginUseCase.logout();
+                    break;
                 }
                 default: {
                     System.out.println("Ingrese una opción válida.");
-                    return true;
+                    break;
                 }
             }
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
-            return true;
+           
         }
     }
 
