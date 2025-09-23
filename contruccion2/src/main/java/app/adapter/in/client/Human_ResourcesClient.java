@@ -25,7 +25,18 @@ public class Human_ResourcesClient {
              4. Crear personal administrativo
              5. Crear personal de soporte
              6. Crear personal de recursos humanos
-             7. Salir""";
+             7. Volver""";
+    
+ // Mostrar menu_update
+    private static final String MENU_update = """
+            Ingrese una de las opciones:
+             1. Crear doctor
+             2. Crear enfermera
+             3. Crear administrador
+             4. Crear personal administrativo
+             5. Crear personal de soporte
+             6. Crear personal de recursos humanos
+             7. Volver""";
 
     private static Scanner sc = new Scanner(System.in);
     private Human_ResourcesUseCase humanResourcesUseCase;
@@ -51,7 +62,11 @@ public class Human_ResourcesClient {
 				
 			}
 			case "2": {
-				
+				menu_update();
+			}
+			case "3": {
+				System.out.println("Hasta luego, cerrando sesión...");
+                loginUseCase.logout();
 			}
 			default:
 				System.out.println("Ingrese una opción válida.");
@@ -101,8 +116,61 @@ public class Human_ResourcesClient {
                     break;
                 }
                 case "7": {
-                    System.out.println("Hasta luego, cerrando sesión...");
-                    loginUseCase.logout();
+                	menu();
+                    break;
+                }
+                default: {
+                    System.out.println("Ingrese una opción válida.");
+                    break;
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+           
+        }
+    }
+    
+ // Menu de actualizacion de datos de usuarios
+    private void menu_update() {
+        try {
+        	
+            System.out.println(MENU_update);
+            String option2 = sc.nextLine();
+
+            switch (option2) {
+                case "1": {
+                    User user = readInfoFromUser();
+                    humanResourcesUseCase.createDoctor(user);
+                    break;
+                }
+                case "2": {
+                    User user = readInfoFromUser();
+                    humanResourcesUseCase.createNurse(user);
+                    break;
+                }
+                case "3": {
+                    User user = readInfoFromUser();
+                    humanResourcesUseCase.createADMINISTRATOR(user);
+                    break;
+                }
+                case "4": {
+                    User user = readInfoFromUser();
+                    humanResourcesUseCase.createADMINISTRATIVE_STAFF(user);
+                    break;
+                }
+                case "5": {
+                    User user = readInfoFromUser();
+                    humanResourcesUseCase.createSUPPORT(user);
+                    break;
+                }
+                case "6": {
+                    User user = readInfoFromUser();
+                    humanResourcesUseCase.createHUMAN_RESOURCES(user);
+                    break;
+                }
+                case "7": {
+                	menu();
                     break;
                 }
                 default: {
@@ -146,6 +214,8 @@ public class Human_ResourcesClient {
         // Construir el objeto User con el UserBuilder
         return userBuilder.build(fullName, document, emailAddress, phoneNumber, dateOfBirth, address, userName, password);
     }
+    
+    
 }
 
 

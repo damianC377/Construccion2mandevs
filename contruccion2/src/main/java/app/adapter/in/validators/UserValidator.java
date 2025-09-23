@@ -5,7 +5,7 @@ import java.sql.Date;
 public class UserValidator extends SimpleValidator {
 
     public String fullNameValidator(String value) throws Exception {
-        return stringValidator("nombre completo de la persona", value);
+        return stringValidator("nombre completo de la persona", value.toLowerCase().trim());
     }
 
     public long documentValidator(String value) throws Exception {
@@ -17,7 +17,7 @@ public class UserValidator extends SimpleValidator {
     }
 
     public String phoneNumberValidator(String value) throws Exception {
-        return stringValidator("número de teléfono", value);
+        return stringValidator("número de teléfono", value.trim());
     }
 
     public Date dateOfBirthValidator(String value) throws Exception {
@@ -29,7 +29,7 @@ public class UserValidator extends SimpleValidator {
     }
 
     public String addressValidator(String value) throws Exception {
-        return stringValidator("dirección", value);
+        return stringValidator("dirección", value.trim());
     }
 
 
