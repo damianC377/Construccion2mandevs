@@ -4,7 +4,7 @@ public class DiagnosticTestOrder extends Order {
     private DiagnosticTestInventory diagnosticTestInventory;
     private int quantity;
     private boolean requiresSpecialist;
-    private Specialist Specialist;
+    private String specialist;
     
 
     // Getters
@@ -17,35 +17,30 @@ public class DiagnosticTestOrder extends Order {
         return quantity;
     }
 
-
     public boolean isRequiresSpecialist() {
         return requiresSpecialist;
     }
 
-    public Specialist getSpecialist() {
-        return Specialist;
+    public String specialist () {
+        return specialist;
     }
 
 
     // Setters
 
-
     public void setDiagnosticTestInventory(DiagnosticTestInventory diagnosticTestInventory) {
         this.diagnosticTestInventory = diagnosticTestInventory;
     }
-
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-
 
     public void setRequiresSpecialist(boolean requiresSpecialist) {
         this.requiresSpecialist = requiresSpecialist;
     }
 
-    public void setSpecialist(Specialist specialist) {
-        Specialist = specialist;
+    public void setSpecialist(String specialist) {
+        this.specialist = specialist;
     }
 
 }

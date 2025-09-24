@@ -2,7 +2,7 @@ package app.domain.model;
 
 public class EmergencyContact {
     private Patient patient;
-    private String Name;
+    private String name;
     private String relationship;
     private String phoneNumber;
 
@@ -13,7 +13,7 @@ public class EmergencyContact {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public String getRelationship() {
@@ -30,9 +30,7 @@ public class EmergencyContact {
         this.patient = patient;
     }
 
-    public void setName(String name) {
-        Name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
     public void setRelationship(String relationship) {
         this.relationship = relationship;

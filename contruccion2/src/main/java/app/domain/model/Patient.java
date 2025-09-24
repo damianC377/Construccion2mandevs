@@ -46,14 +46,6 @@ public class Patient {
         return medicalRecord;
     }
 
-    public EmergencyContact getEmergencyContact() {
-        return emergencyContact;
-    }
-
-    public HealthInsurance getHealthInsurance() {
-        return healthInsurance;
-    }
-
 
     // Setters
     public void setId(long id) {
@@ -86,12 +78,6 @@ public class Patient {
         this.medicalRecord = medicalRecord;
     }
 
-    public void setEmergencyContact(EmergencyContact emergencyContact) {
-        this.emergencyContact = emergencyContact;
-    }
 
-    public void setHealthInsurance(HealthInsurance healthInsurance) {
-        this.healthInsurance = healthInsurance;
-    }
 
 }
