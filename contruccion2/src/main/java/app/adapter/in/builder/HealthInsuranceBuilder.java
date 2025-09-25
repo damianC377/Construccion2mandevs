@@ -6,7 +6,7 @@ import app.domain.model.Patient;
 
 public class HealthInsuranceBuilder {
 
-    private final HealthInsuranceValidator healthInsuranceValidator;
+    private HealthInsuranceValidator healthInsuranceValidator;
 
     public HealthInsurance build(Patient patient, String companyName, String policyNumber,
                                  String active, String endDate) throws Exception {
