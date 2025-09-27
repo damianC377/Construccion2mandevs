@@ -32,16 +32,16 @@ public class Administrative_StaffUserCase {
 
 
     // Crear y buscar contacto de emergencia
-    public void createEmergencyContact (EmergencyContact contact) throws Exception{
-        createEmergencyContact.create(contact);
+    public void createEmergencyContact (EmergencyContact contact, Patient patient) throws Exception{
+        createEmergencyContact.create(contact, patient);
     }
     public EmergencyContact searchEmergencyContact(Patient patient) throws Exception{
         return searchEmergencyContact.search(patient);
     }
 
     // Crear y buscar seguro médico
-    public void createHealthInsurance (HealthInsurance healthInsurance) throws Exception{
-        createHealthInsurance.create(healthInsurance);
+    public void createHealthInsurance (HealthInsurance healthInsurance, Patient patient) throws Exception{
+        createHealthInsurance.create(healthInsurance, patient);
     }
     public HealthInsurance searchHealthInsurance (Patient patient) throws Exception{
         return searchHealthInsuranceByPatient.search(patient);
