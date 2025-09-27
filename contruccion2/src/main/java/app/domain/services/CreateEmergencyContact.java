@@ -13,9 +13,9 @@ public class CreateEmergencyContact {
     private UserRequireRole userRequireRole;
 
     // Crear contacto de emergencia
-    public void create(EmergencyContact contact) throws Exception {
+    public void create(EmergencyContact contact, Patient patient) throws Exception {
         // Validar si el paciente existe
-        Patient patient = patientPort.findByDocument(contact.getPatient());
+        patient = patientPort.findByDocument(patient);
         if (patient == null) {
             throw new Exception("El paciente no existe");
         }

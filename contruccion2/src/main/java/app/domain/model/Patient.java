@@ -12,7 +12,8 @@ public class Patient {
     private String phoneNumber;
     private String emailAddress;
     private MedicalRecord medicalRecord;
-
+    private EmergencyContact emergencyContact;
+    private HealthInsurance healthInsurance;
     
 
     // Getters
@@ -44,6 +45,14 @@ public class Patient {
 
     public MedicalRecord getMedicalRecord() {
         return medicalRecord;
+    }
+
+    public EmergencyContact getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public HealthInsurance getHealthInsurance() {
+        return healthInsurance;
     }
 
 
@@ -78,6 +87,12 @@ public class Patient {
         this.medicalRecord = medicalRecord;
     }
 
+    public void setEmergencyContact(EmergencyContact emergencyContact) {
+        this.emergencyContact = emergencyContact;
+    }
 
+    public void setHealthInsurance(HealthInsurance healthInsurance) {
+        this.healthInsurance = healthInsurance;
+    }
 
 }

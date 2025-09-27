@@ -14,9 +14,9 @@ public class CreateHealthInsurance {
     private UserRequireRole userRequireRole;
 
     // Crear seguro de salud
-    public void create(HealthInsurance healthInsurance) throws Exception {
+    public void create(HealthInsurance healthInsurance, Patient patient) throws Exception {
         // Validar si el paciente existe
-        Patient patient = patientPort.findByDocument(healthInsurance.getPatient());
+        patient = patientPort.findByDocument(patient);
         if (patient == null) {
             throw new Exception("El paciente no existe");
         }
