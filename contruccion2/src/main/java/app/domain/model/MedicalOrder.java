@@ -29,7 +29,9 @@ public class MedicalOrder {
         return orderDate;
     }
 
-  
+    public List<Order> getItems() {
+        return items;
+    }
 
     // Setters
     public void setOrderNumber(long orderNumber) {
@@ -48,5 +50,9 @@ public class MedicalOrder {
         this.orderDate = orderDate;
     }
 
-   
+    public void setItems(List<Order> items) {
+        this.items = items;
+    }
+
+
 }

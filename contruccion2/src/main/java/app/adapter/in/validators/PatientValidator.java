@@ -4,6 +4,10 @@ import java.sql.Date;
 
 public class PatientValidator extends SimpleValidator {
 
+    public long documentValidator(String value) throws Exception {
+        return longValidator("documento del paciente", value);
+    }
+
     public String fullNameValidator(String value) throws Exception {
         return stringValidator("nombre completo del paciente", value);
     }

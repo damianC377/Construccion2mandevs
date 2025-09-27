@@ -5,6 +5,7 @@ import java.sql.Date;
 
 public class Patient {
     private long id;
+    private long document;
     private String fullName;
     private Date dateOfBirth;
     private String gender;
@@ -18,6 +19,10 @@ public class Patient {
 
     // Getters
     public long getId() { return id; }
+
+    public long getDocument() {
+        return document;
+    }
 
     public String getFullName() {
         return fullName;
@@ -59,6 +64,10 @@ public class Patient {
     // Setters
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setDocument(long document) {
+        this.document = document;
     }
 
     public void setFullName(String fullName) {

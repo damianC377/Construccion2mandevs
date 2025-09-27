@@ -1,7 +1,6 @@
 package app.adapter.in.builder;
 
 import app.adapter.in.validators.PatientValidator;
-import app.domain.model.MedicalRecord;
 import app.domain.model.Patient;
 
 public class PatientBuilder {

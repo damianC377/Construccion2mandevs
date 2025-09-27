@@ -2,7 +2,6 @@ package app.adapter.in.builder;
 
 import app.adapter.in.validators.EmergencyContactValidator;
 import app.domain.model.EmergencyContact;
-import app.domain.model.Patient;
 
 public class EmergencyContactBuilder {
 

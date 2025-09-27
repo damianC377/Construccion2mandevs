@@ -1,15 +1,47 @@
 package app.adapter.in.builder;
 
+import java.util.List;
+
 import app.adapter.in.validators.InvoiceValidator;
-import app.domain.model.*;
+import app.adapter.in.validators.MedicalOrderValidator;
+import app.adapter.in.validators.PatientValidator;
+import app.adapter.in.validators.UserValidator;
+import app.domain.model.HealthInsurance;
+import app.domain.model.Invoice;
+import app.domain.model.MedicalOrder;
+import app.domain.model.Order;
+import app.domain.model.Patient;
+import app.domain.model.User;
 
 public class InvoiceBuilder {
 
     private InvoiceValidator invoiceValidator;
+    private MedicalOrderValidator medicalOrderValidator;
+    private PatientValidator patientValidator;
+    private UserValidator userValidator;
+    private MedicalOrderBuilder medicalOrderBuilder;
 
-    public Invoice build(String policyNumber, String policyValidityDays, String policyEndDate) throws Exception {
+    public Invoice build(String patientDocument, String doctorDocument, HealthInsurance insurance,
+                         String policyNumber, String policyValidityDays, String policyEndDate,
+                         String orderNumber, String orderDate, List<Order> items) throws Exception {
 
+
+
+        // Crear e inicializar los objetos que componen la entidad
+
+        // Crear MedicalOrder usando su propio builder. Invoice requiere un MedicalOrder completo y validado
+        // porque la factura debe reflejar toda la información del pedido médico.
+        MedicalOrder medicalOrder = medicalOrderBuilder.build(patientDocument, doctorDocument, orderNumber, orderDate, items);
+
+        Patient patient = medicalOrder.getPatient();
+        User doctor = medicalOrder.getDoctor();
         Invoice invoice = new Invoice();
+
+        // Validar y asignar los atributos del Invoice
+        invoice.setPatient(patient);
+        invoice.setDoctor(doctor);
+        invoice.setMedicalOrder(medicalOrder);
+        invoice.setInsurance(insurance);
         invoice.setPolicyNumber(invoiceValidator.policyNumberValidator(policyNumber));
         invoice.setPolicyValidityDays(invoiceValidator.policyValidityDaysValidator(policyValidityDays));
         invoice.setPolicyEndDate(invoiceValidator.policyEndDateValidator(policyEndDate));
