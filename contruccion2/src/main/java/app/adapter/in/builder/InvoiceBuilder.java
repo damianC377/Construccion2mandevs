@@ -7,25 +7,14 @@ import java.sql.Date;
 
 public class InvoiceBuilder {
 
-    private final InvoiceValidator invoiceValidator;
+    private InvoiceValidator invoiceValidator;
 
-    public InvoiceBuilder(InvoiceValidator invoiceValidator) {
-        this.invoiceValidator = invoiceValidator;
-    }
-
-    public Invoice build(Patient patient, User doctor, HealthInsurance insurance,
-                         String policyNumber, String policyValidityDays, String policyEndDate,
-                         MedicalOrder medicalOrder) throws Exception {
+    public Invoice build(String policyNumber, String policyValidityDays, String policyEndDate) throws Exception {
 
         Invoice invoice = new Invoice();
-
-        invoice.setPatient(invoiceValidator.patientValidator(patient));
-        invoice.setDoctor(invoiceValidator.doctorValidator(doctor));
-        invoice.setInsurance(invoiceValidator.insuranceValidator(insurance));
         invoice.setPolicyNumber(invoiceValidator.policyNumberValidator(policyNumber));
         invoice.setPolicyValidityDays(invoiceValidator.policyValidityDaysValidator(policyValidityDays));
         invoice.setPolicyEndDate(invoiceValidator.policyEndDateValidator(policyEndDate));
-        invoice.setMedicalOrder(invoiceValidator.medicalOrderValidator(medicalOrder));
 
         return invoice;
     }

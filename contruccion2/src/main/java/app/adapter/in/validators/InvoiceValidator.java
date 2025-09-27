@@ -6,27 +6,6 @@ import java.sql.Date;
 
 public class InvoiceValidator extends SimpleValidator {
 
-    public Patient patientValidator(Patient patient) throws Exception {
-        if (patient == null) {
-            throw new Exception("El paciente no puede ser nulo");
-        }
-        return patient;
-    }
-
-    public User doctorValidator(User doctor) throws Exception {
-        if (doctor == null) {
-            throw new Exception("El doctor no puede ser nulo");
-        }
-        return doctor;
-    }
-
-    public HealthInsurance insuranceValidator(HealthInsurance insurance) throws Exception {
-        if (insurance == null) {
-            throw new Exception("El seguro de salud no puede ser nulo");
-        }
-        return insurance;
-    }
-
     public String policyNumberValidator(String value) throws Exception {
         return stringValidator("número de póliza", value);
     }
@@ -43,10 +22,4 @@ public class InvoiceValidator extends SimpleValidator {
         }
     }
 
-    public MedicalOrder medicalOrderValidator(MedicalOrder medicalOrder) throws Exception {
-        if (medicalOrder == null) {
-            throw new Exception("La orden médica no puede ser nula");
-        }
-        return medicalOrder;
-    }
 }

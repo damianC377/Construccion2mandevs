@@ -7,12 +7,6 @@ import java.util.List;
 
 public class MedicalRecordValidator extends SimpleValidator {
 
-    public Patient patientValidator(Patient patient) throws Exception {
-        if (patient == null) {
-            throw new Exception("El paciente no puede ser nulo");
-        }
-        return patient;
-    }
 
     public Date orderDateValidator(String value) throws Exception {
         try {
@@ -20,13 +14,6 @@ public class MedicalRecordValidator extends SimpleValidator {
         } catch (IllegalArgumentException e) {
             throw new Exception("Formato de fecha de orden inválido. Usa yyyy-mm-dd");
         }
-    }
-
-    public User doctorValidator(User doctor) throws Exception {
-        if (doctor == null) {
-            throw new Exception("El doctor no puede ser nulo");
-        }
-        return doctor;
     }
 
     public String consultationReasonValidator(String value) throws Exception {
@@ -41,11 +28,5 @@ public class MedicalRecordValidator extends SimpleValidator {
         return stringValidator("diagnóstico", value);
     }
 
-    public List<MedicalOrder> ordersValidator(List<MedicalOrder> orders) throws Exception {
-        if (orders == null || orders.isEmpty()) {
-            throw new Exception("La lista de órdenes médicas no puede estar vacía ni ser nula");
-        }
-        return orders;
-    }
 }
 

@@ -32,7 +32,6 @@ public class UserValidator extends SimpleValidator {
         return stringValidator("dirección", value.trim());
     }
 
-
     public String userNameValidator(String value) throws Exception {
         return stringValidator("nombre de usuario", value);
     }

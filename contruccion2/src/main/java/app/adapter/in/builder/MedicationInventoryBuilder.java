@@ -5,13 +5,10 @@ import app.domain.model.MedicationInventory;
 
 public class MedicationInventoryBuilder {
 
-    private final MedicationInventoryValidator medicationInventoryValidator;
-
-    public MedicationInventoryBuilder(MedicationInventoryValidator medicationInventoryValidator) {
-        this.medicationInventoryValidator = medicationInventoryValidator;
-    }
+    private MedicationInventoryValidator medicationInventoryValidator;
 
     public MedicationInventory build(String id, String name, String cost) throws Exception {
+
         MedicationInventory medicationInventory = new MedicationInventory();
         medicationInventory.setId(medicationInventoryValidator.idValidator(id));
         medicationInventory.setName(medicationInventoryValidator.nameValidator(name));
