@@ -3,8 +3,6 @@ package app.adapter.in.builder;
 import app.adapter.in.validators.InvoiceValidator;
 import app.domain.model.*;
 
-import java.sql.Date;
-
 public class InvoiceBuilder {
 
     private final InvoiceValidator invoiceValidator;

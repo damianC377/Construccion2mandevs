@@ -3,7 +3,6 @@ package app.adapter.in.builder;
 import app.adapter.in.validators.MedicalRecordValidator;
 import app.domain.model.*;
 
-import java.sql.Date;
 import java.util.List;
 
 public class MedicalRecordBuilder {

@@ -12,6 +12,8 @@ public class Patient {
     private String phoneNumber;
     private String emailAddress;
     private MedicalRecord medicalRecord;
+    private long healthinsurance;
+    
 
     
 
@@ -46,8 +48,11 @@ public class Patient {
         return medicalRecord;
     }
 
+    public long getHealthinsurance() {
+		return healthinsurance;
+	}
 
-    // Setters
+	// Setters
     public void setId(long id) {
         this.id = id;
     }
@@ -77,6 +82,11 @@ public class Patient {
     public void setMedicalRecord(MedicalRecord medicalRecord) {
         this.medicalRecord = medicalRecord;
     }
+    
+	public void setHealthinsurance(long healthinsurance) {
+		this.healthinsurance = healthinsurance;
+	}
+
 
 
 
