@@ -24,7 +24,7 @@ public class LoginClient {
 			
 			User user = loginBuilder.build(userName, password);
 			
-			User userlogged = loginUseCase.loginUseCase(userName, password);
+			User userlogged = loginUseCase.loginUseCase(user.getUserName(), user.getPassword());
 			
 			System.out.println("Bienvenido: "+ userlogged.getFullName());
 			

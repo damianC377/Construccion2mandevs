@@ -15,7 +15,7 @@ public class HealthInsuranceValidator extends SimpleValidator {
     }
 
     public boolean activeValidator(String value) throws Exception {
-        if (value == null || value.isEmpty()) {
+        if (value == null || value.isBlank()) {
             throw new Exception("el estado de la póliza no puede ser vacío o nulo");
         }
         if (!value.equalsIgnoreCase("true") && !value.equalsIgnoreCase("false")) {
