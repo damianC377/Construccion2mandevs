@@ -42,7 +42,7 @@ public class NurseClient {
                     registerMedicalOrder();
                     break;
                 case "2":
-                    System.out.println("Buscar orden medica");
+                    System.out.println("Buscar orden medica"); // Luego se implementa
                     break;
                 case "3":
                     registerVitalSigns();
@@ -90,16 +90,19 @@ public class NurseClient {
         // Construir la orden médica usando el builder
         MedicalOrder order = medicalOrderBuilder.build(patientDoc, doctorDoc, orderNumber, orderDate, items);
         nurseUserCase.createMedicalOrder(order); // Guardar la orden
-        System.out.println("Orden médica registrada correctamente.");
     }
 
     // Registrar signos vitales
     private void registerVitalSigns() {
         System.out.println("Registro de signos vitales del paciente:");
-        System.out.println("Presión arterial:"); String pressure = sc.nextLine();
-        System.out.println("Temperatura:"); String temperature = sc.nextLine();
-        System.out.println("Pulso:"); String pulse = sc.nextLine();
-        System.out.println("Nivel de oxígeno:"); String oxygen = sc.nextLine();
+        System.out.println("Presión arterial:");
+        String pressure = sc.nextLine();
+        System.out.println("Temperatura:");
+        String temperature = sc.nextLine();
+        System.out.println("Pulso:");
+        String pulse = sc.nextLine();
+        System.out.println("Nivel de oxígeno:");
+        String oxygen = sc.nextLine();
 
         System.out.println("Signos vitales registrados:");
         System.out.println("Presión: " + pressure + ", Temperatura: " + temperature +
@@ -109,15 +112,18 @@ public class NurseClient {
     // Crear ítem tipo medicamento
     private Order createMedicationOrder() {
         MedicationOrder medicationOrder = new MedicationOrder();
-        System.out.println("Dosis:"); medicationOrder.setDosage(sc.nextLine());
-        System.out.println("Duración del tratamiento:"); medicationOrder.setTreatmentDuration(sc.nextLine());
+        System.out.println("Dosis:");
+        medicationOrder.setDosage(sc.nextLine());
+        System.out.println("Duración del tratamiento:");
+        medicationOrder.setTreatmentDuration(sc.nextLine());
         return medicationOrder;
     }
 
     // Crear ítem tipo procedimiento
     private Order createProcedureOrder() {
         ProcedureOrder procedureOrder = new ProcedureOrder();
-        System.out.println("Frecuencia:"); procedureOrder.setFrequency(sc.nextLine());
+        System.out.println("Frecuencia:");
+        procedureOrder.setFrequency(sc.nextLine());
         System.out.println("Requiere especialista? (sí/no):");
         procedureOrder.setRequiresSpecialist(sc.nextLine().equalsIgnoreCase("sí"));
         return procedureOrder;

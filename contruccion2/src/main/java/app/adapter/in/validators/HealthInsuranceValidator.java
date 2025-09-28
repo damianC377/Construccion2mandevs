@@ -6,6 +6,13 @@ import app.domain.model.Patient;
 
 public class HealthInsuranceValidator extends SimpleValidator {
 
+    public Patient patientValidator(Patient patient) throws Exception {
+        if (patient == null) {
+            throw new Exception("el paciente no puede ser nulo");
+        }
+        return patient;
+    }
+
     public String companyNameValidator(String value) throws Exception {
         return stringValidator("nombre de la compañia de seguro", value);
     }
@@ -18,10 +25,11 @@ public class HealthInsuranceValidator extends SimpleValidator {
         if (value == null || value.isBlank()) {
             throw new Exception("el estado de la póliza no puede ser vacío o nulo");
         }
-        if (!value.equalsIgnoreCase("true") && !value.equalsIgnoreCase("false")) {
+        if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false")) {
+            return Boolean.parseBoolean(value);
+        } else {
             throw new Exception("el estado de la póliza debe ser 'true' o 'false'");
         }
-        return Boolean.parseBoolean(value);
     }
 
     public Date endDateValidator(String value) throws Exception {

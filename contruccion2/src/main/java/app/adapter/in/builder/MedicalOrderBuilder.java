@@ -23,9 +23,9 @@ public class MedicalOrderBuilder {
         User doctor = new User();
         MedicalOrder medicalOrder = new MedicalOrder();
 
+        // Validar y asignar los atributos del MedicalOrder
         patient.setDocument(patientValidator.documentValidator(patientDocument));
         doctor.setDocument(userValidator.documentValidator(doctorDocument));
-
         medicalOrder.setPatient(patient);
         medicalOrder.setDoctor(doctor);
         medicalOrder.setOrderNumber(medicalOrderValidator.orderNumberValidator(orderNumber));

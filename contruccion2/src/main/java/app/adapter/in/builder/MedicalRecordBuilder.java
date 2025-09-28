@@ -25,12 +25,12 @@ public class MedicalRecordBuilder {
         Patient patient = new Patient();
         User doctor = new User();
         MedicalRecord medicalRecord = new MedicalRecord();
+
+        // Validar y asignar los atributos del MedicalRecord
         patient.setDocument(patientValidator.documentValidator(patientDocument));
         doctor.setDocument(userValidator.documentValidator(doctorDocument));
         medicalRecord.setPatient(patient);
         medicalRecord.setDoctor(doctor);
-
-        // Validar y asignar los atributos del MedicalRecord
         medicalRecord.setOrderDate(medicalRecordValidator.orderDateValidator(orderDate));
         medicalRecord.setConsultationReason(medicalRecordValidator.consultationReasonValidator(consultationReason));
         medicalRecord.setSymptoms(medicalRecordValidator.symptomsValidator(symptoms));
