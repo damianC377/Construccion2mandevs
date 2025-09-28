@@ -29,7 +29,6 @@ public class PatientBuilder {
         patient.setPhoneNumber(patientValidator.phoneNumberValidator(phoneNumber));
         patient.setEmailAddress(patientValidator.emailValidator(emailAddress));
         patient.setMedicalRecord(patientValidator.medicalRecordValidator(medicalRecord));
-        patient.setEmergencyContact(patientValidator.emergencyContactValidator(emergencyContact));
         patient.setHealthInsurance(patientValidator.healthInsuranceValidator(healthInsurance));
 
         return patient;
