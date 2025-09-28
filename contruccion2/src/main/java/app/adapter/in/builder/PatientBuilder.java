@@ -7,7 +7,7 @@ public class PatientBuilder {
 
     private PatientValidator patientValidator;
 
-    public Patient builder(String fullName, String dateOfBirth, String gender, String address,
+    public Patient build(String fullName, String dateOfBirth, String gender, String address,
                            String phoneNumber, String emailAddress) throws Exception {
 
         Patient patient = new Patient();
