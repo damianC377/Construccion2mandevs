@@ -21,8 +21,7 @@ public class InvoiceBuilder {
     private UserValidator userValidator;
     private MedicalOrderBuilder medicalOrderBuilder;
 
-    public Invoice build(String patientDocument, String doctorDocument, HealthInsurance insurance,
-                         String policyNumber, String policyValidityDays, String policyEndDate,
+    public Invoice build(String patientDocument, String doctorDocument, String policyNumber, String policyValidityDays, String policyEndDate,
                          String orderNumber, String orderDate, List<Order> items) throws Exception {
 
 
@@ -41,7 +40,6 @@ public class InvoiceBuilder {
         invoice.setPatient(patient);
         invoice.setDoctor(doctor);
         invoice.setMedicalOrder(medicalOrder);
-        invoice.setInsurance(insurance);
         invoice.setPolicyNumber(invoiceValidator.policyNumberValidator(policyNumber));
         invoice.setPolicyValidityDays(invoiceValidator.policyValidityDaysValidator(policyValidityDays));
         invoice.setPolicyEndDate(invoiceValidator.policyEndDateValidator(policyEndDate));

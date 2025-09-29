@@ -25,10 +25,15 @@ public class HealthInsuranceValidator extends SimpleValidator {
         if (value == null || value.isBlank()) {
             throw new Exception("el estado de la póliza no puede ser vacío o nulo");
         }
-        if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false")) {
-            return Boolean.parseBoolean(value);
-        } else {
-            throw new Exception("el estado de la póliza debe ser 'true' o 'false'");
+        
+        value = value.trim();
+        		
+        if(value.equalsIgnoreCase("s")) {
+        	return true;
+        } else if(value.equalsIgnoreCase("n")) {
+        	return false;
+        }else {
+        	throw new Exception("El estado de la póliza debe ser 's'(Si) o 'n'(No)");
         }
     }
 

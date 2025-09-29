@@ -12,6 +12,11 @@ public class SearchHealthInsuranceByPatient {
 	
 	   // Consultar seguro de salud por paciente
     public HealthInsurance search(Patient patient) throws Exception {
+    	//Buscar el paciente
+    	if (patient == null) {
+            throw new Exception("El paciente no existe");
+        }
+    	
         // Validar si el paciente existe y tiene seguro
         patient = patientPort.findByDocument(patient);
         if (patient == null || patient.getHealthInsurance() == null) {

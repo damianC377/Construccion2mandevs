@@ -1,7 +1,7 @@
 package app.adapter.in.client;
 
+
 import java.util.Scanner;
-import java.sql.Date;
 import app.adapter.in.builder.PatientBuilder;
 import app.adapter.in.builder.EmergencyContactBuilder;
 import app.adapter.in.builder.HealthInsuranceBuilder;
@@ -22,9 +22,8 @@ public class Administrative_StaffClient {
             Ingrese qué desea crear:
              1. Paciente
              2. Contacto de emergencia
-             3. Seguro de salud
-             4. Factura
-             5. Volver""";
+             3. Factura
+             4. Volver""";
 
     private static final String MENU_SEARCH = """
             Ingrese qué desea buscar:
@@ -89,18 +88,11 @@ public class Administrative_StaffClient {
                     break;
                 }
                 case "3": {
-                    // Buscar paciente primero para asignar seguro
-                    Patient patient = readPatientDocumentOnly();
-                    HealthInsurance insurance = readHealthInsuranceData();
-                    staffUseCase.createHealthInsurance(insurance, patient);
-                    break;
-                }
-                case "4": {
                     Invoice invoice = readInvoiceData();
                     staffUseCase.createInvoice(invoice);
                     break;
                 }
-                case "5": back = true; break;
+                case "4": back = true; break;
                 default: System.out.println("Opción inválida");
             }
         }
@@ -124,50 +116,95 @@ public class Administrative_StaffClient {
     }
 
     // Métodos para pedir datos
-    private Patient readPatientData() {
-        System.out.println("Documento:"); long document = Long.parseLong(sc.nextLine());
+    private Patient readPatientData() throws Exception {
+        System.out.println("Documento:"); String document = sc.nextLine();
         System.out.println("Nombre completo:"); String fullName = sc.nextLine();
-        System.out.println("Fecha de nacimiento (yyyy-mm-dd):"); Date dob = Date.valueOf(sc.nextLine());
+        System.out.println("Fecha de nacimiento (yyyy-mm-dd):"); String dob = sc.nextLine();
         System.out.println("Género:"); String gender = sc.nextLine();
         System.out.println("Dirección:"); String address = sc.nextLine();
         System.out.println("Teléfono:"); String phone = sc.nextLine();
         System.out.println("Email:"); String email = sc.nextLine();
 
-        return patientBuilder.build();
+        Patient patient = patientBuilder.build(document, fullName, dob, gender, address, phone, email);
+        
+        System.out.println("¿Desea asociar un seguro existente o crear uno nuevo?");
+        System.out.println("1. Asociar existente");
+        System.out.println("2. Crear nuevo");
+        System.out.println("3. No tiene");
+        String opt = sc.nextLine();
+        
+        HealthInsurance insurance = null;
+        
+        switch (opt){
+		case "1": {
+			System.out.println("Ingresa el número de la poliza: ");
+			String policyNumber = sc.nextLine();
+			
+			try {
+				
+				insurance = staffUseCase.searchHealthInsuranceByPolicyNumber(policyNumber);
+				
+			} catch (Exception e) {
+				System.out.println("No se encontró la póliza con ese número.");
+			}
+			break;
+		}
+		case "2":{
+			insurance = readHealthInsuranceData();
+			staffUseCase.createHealthInsurance(insurance);
+			System.out.println("Seguro creado y asignado al paciente");
+			break;
+		}
+		case "3":{
+			System.out.println("Paciente sin seguro registrado");
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("No existe esta opcion. Se continuará sin seguro");
+		}
+        
+        if(insurance != null) {
+        	patient.setHealthInsurance(insurance);
+        }
+        
+        return patient;
+        
     }
 
-    private Patient readPatientDocumentOnly() {
+    private Patient readPatientDocumentOnly() throws Exception{
         System.out.println("Documento del paciente:"); long document = Long.parseLong(sc.nextLine());
         Patient patient = new Patient();
         patient.setDocument(document);
+        
         return patient;
     }
 
 
-    private EmergencyContact readEmergencyContactData() {
+    private EmergencyContact readEmergencyContactData() throws Exception {
         System.out.println("Nombre:"); String name = sc.nextLine();
         System.out.println("Parentesco:"); String relationship = sc.nextLine();
         System.out.println("Teléfono:"); String phone = sc.nextLine();
 
-        return emergencyContactBuilder.build();
+        return emergencyContactBuilder.build(name, relationship, phone);
+        
     }
 
-    private HealthInsurance readHealthInsuranceData() {
-        System.out.println("Compañía:"); String company = sc.nextLine();
-        System.out.println("Número de póliza:"); String policyNumber = sc.nextLine();
-        System.out.println("Activo (true/false):"); boolean active = Boolean.parseBoolean(sc.nextLine());
-        System.out.println("Fecha fin (yyyy-mm-dd):"); Date endDate = Date.valueOf(sc.nextLine());
+    private HealthInsurance readHealthInsuranceData() throws Exception {
+        System.out.println("Compañía: "); String company = sc.nextLine();
+        System.out.println("Número de póliza: "); String policyNumber = sc.nextLine();
+        System.out.println("Activo (s/n): "); String active = sc.nextLine();
+        System.out.println("Fecha fin (yyyy-mm-dd): "); String endDate = sc.nextLine();
 
-        return healthInsuranceBuilder.build();
+       return healthInsuranceBuilder.build(company, policyNumber, active, endDate);
     }
 
-    private Invoice readInvoiceData() {
-        System.out.println("Documento del paciente:"); long patientDocument = Long.parseLong(sc.nextLine());
-        System.out.println("Documento del doctor:"); long doctorDocument = Long.parseLong(sc.nextLine());
+    private Invoice readInvoiceData() throws Exception{
+        System.out.println("Documento del paciente:"); String patientDocument = sc.nextLine();
+        System.out.println("Documento del doctor:"); String doctorDocument = sc.nextLine();
         System.out.println("Número póliza:"); String policyNumber = sc.nextLine();
-        System.out.println("Validez en días:"); int validityDays = Integer.parseInt(sc.nextLine());
-        System.out.println("Fecha fin de póliza (yyyy-mm-dd):"); Date endDate = Date.valueOf(sc.nextLine());
+        System.out.println("Validez en días:"); String validityDays = sc.nextLine();
+        System.out.println("Fecha fin de póliza (yyyy-mm-dd):"); String endDate = sc.nextLine();
 
-        return invoiceBuilder.build();
+        return invoiceBuilder.build(patientDocument, doctorDocument, policyNumber, validityDays, endDate, validityDays, endDate, null);
     }
 }

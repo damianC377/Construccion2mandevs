@@ -21,6 +21,8 @@ public class Administrative_StaffUserCase {
 
     private CreateInvoice createInvoice;
     private SearchInvoiceByPatient searchInvoiceByPatient;
+    private SearchHealthInsuranceByPolicyNumber searchHealthInsuranceByPolicy;
+    
 
     // Crear y buscar paciente
     public void createPatient (Patient patient) throws Exception{
@@ -40,11 +42,15 @@ public class Administrative_StaffUserCase {
     }
 
     // Crear y buscar seguro médico
-    public void createHealthInsurance (HealthInsurance healthInsurance, Patient patient) throws Exception{
-        createHealthInsurance.create(healthInsurance, patient);
+    public void createHealthInsurance (HealthInsurance healthInsurance) throws Exception{
+        createHealthInsurance.create(healthInsurance);
     }
-    public HealthInsurance searchHealthInsurance (Patient patient) throws Exception{
+    public HealthInsurance searchHealthInsuranceBypatient (Patient patient) throws Exception{
         return searchHealthInsuranceByPatient.search(patient);
+    }
+    
+    public HealthInsurance searchHealthInsuranceByPolicyNumber(String policyNumber) throws Exception{
+    	return searchHealthInsuranceByPolicy.searchByPolicy(policyNumber);
     }
 
     // Crear y buscar factura

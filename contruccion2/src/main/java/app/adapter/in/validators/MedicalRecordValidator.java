@@ -1,9 +1,7 @@
 package app.adapter.in.validators;
 
-import app.domain.model.*;
-
 import java.sql.Date;
-import java.util.List;
+
 
 public class MedicalRecordValidator extends SimpleValidator {
 

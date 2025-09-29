@@ -8,7 +8,6 @@ import app.domain.model.MedicalOrder;
 import app.domain.model.Patient;
 import app.domain.model.User;
 
-import java.sql.Date;
 import java.util.List;
 
 public class MedicalRecordBuilder {
