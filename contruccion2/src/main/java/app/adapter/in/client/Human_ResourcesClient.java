@@ -5,9 +5,12 @@ import app.application.usecases.Human_ResourcesUseCase;
 import app.application.usecases.LoginUseCase;
 import app.domain.model.User;
 import app.domain.model.enums.Role;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.Scanner;
 
+@Controller
 public class Human_ResourcesClient {
 	
 	// Mostrar menu_create
@@ -40,8 +43,11 @@ public class Human_ResourcesClient {
              7. Volver""";
 
     private static Scanner sc = new Scanner(System.in);
+    @Autowired
     private Human_ResourcesUseCase humanResourcesUseCase;
+    @Autowired
     private UserBuilder userBuilder;
+    @Autowired
     private LoginUseCase loginUseCase;
 
     // Iniciar sesión y mantener el menú

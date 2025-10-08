@@ -5,17 +5,21 @@ import app.domain.services.CreateMedicalRecord;
 import app.domain.services.SearchMedicalOrderByPatient;
 import app.domain.services.SearchMedicalRecordByPatient;
 import app.domain.services.SearchPatientByDocument;
-
 import java.util.List;
-
 import app.domain.model.MedicalOrder;
 import app.domain.model.MedicalRecord;
 import app.domain.model.Patient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class NurseUserCase {
+
+    @Autowired
     private CreateMedicalRecord createMedicalRecord;
     private SearchMedicalRecordByPatient searchMedicalRecordByPatient;
 
+    @Autowired
     private CreateMedicalOrder createMedicalOrder;
     private SearchMedicalOrderByPatient searchMedicalOrderByPatient;
 

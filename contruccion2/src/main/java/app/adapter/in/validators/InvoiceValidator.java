@@ -1,9 +1,10 @@
 package app.adapter.in.validators;
 
-import app.domain.model.*;
+import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 
+@Component
 public class InvoiceValidator extends SimpleValidator {
 
     public String policyNumberValidator(String value) throws Exception {

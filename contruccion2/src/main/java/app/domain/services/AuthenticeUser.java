@@ -2,16 +2,18 @@ package app.domain.services;
 
 import app.domain.model.User;
 import app.domain.port.UserPort;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AuthenticeUser {
-	
+    @Autowired
 	private UserPort userport;
+    @Autowired
 	private UserLogin userLogin;
 	
 	public User authentice(String userName, String password) throws Exception {
-		
-		
-		
+
 		User existing = new User();
 		existing.setUserName(userName.trim().toLowerCase());
 		

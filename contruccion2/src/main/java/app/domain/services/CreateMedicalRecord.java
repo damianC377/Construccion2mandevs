@@ -7,12 +7,18 @@ import app.domain.model.enums.Role;
 import app.domain.port.MedicalRecordPort;
 import app.domain.port.PatientPort;
 import app.domain.port.UserPort;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateMedicalRecord {
-
+    @Autowired
     private PatientPort patientPort;
+    @Autowired
     private MedicalRecordPort medicalRecordPort;
+    @Autowired
     private UserPort userPort;
+    @Autowired
     private UserRequireRole userRequireRole;
 
     // Crear historia clínica

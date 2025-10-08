@@ -4,10 +4,16 @@ import app.domain.model.User;
 import app.domain.model.enums.Role;
 import app.domain.services.CreateUser;
 import app.domain.services.UpdateUser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class Human_ResourcesUseCase {
-	
+
+    @Autowired
 	private CreateUser createUser;
+
+    @Autowired
 	private UpdateUser updateUser;
 	
 	public void createDoctor(User user) throws Exception {

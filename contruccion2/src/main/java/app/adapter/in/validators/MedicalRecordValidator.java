@@ -1,8 +1,10 @@
 package app.adapter.in.validators;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Date;
 
-
+@Component
 public class MedicalRecordValidator extends SimpleValidator {
 
 

@@ -3,11 +3,11 @@ package app.domain.services;
 import app.domain.model.User;
 
 public class UserLogin {
-	
+
 	//Variable que se usa a futuro para guardar la sesión
 	private User currentUser;
-	private int failedattempts = 0;
-	private int maxattempts = 3;
+	private int failedAttempts = 0;
+	private int maxAttempts = 3;
 	
 	//Este Recibe un parametro al momento de iniciar sesión validando al usuario
 	public void login(User user) throws Exception {
@@ -17,12 +17,12 @@ public class UserLogin {
 			throw new Exception("Usuario invalido");
 		}
 		
-		if(failedattempts >= maxattempts) {
+		if(failedAttempts >= maxAttempts) {
 			throw new Exception("Cuenta bloqueada por demasiados intentos");
 		}
 		
 		currentUser = user;
-		failedattempts = 0;
+		failedAttempts = 0;
 
 	}
 	
@@ -31,7 +31,7 @@ public class UserLogin {
 	}
 	
 	public void registerFailedAttempts() {
-		failedattempts++;
+		failedAttempts++;
 	}
 	
 	//Trae el usuario de la sesion iniciada

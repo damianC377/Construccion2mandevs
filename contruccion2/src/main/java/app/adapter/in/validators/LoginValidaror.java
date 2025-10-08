@@ -1,5 +1,8 @@
 package app.adapter.in.validators;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class LoginValidaror extends SimpleValidator{
 	
 	public String userNameValidator(String value) throws Exception {

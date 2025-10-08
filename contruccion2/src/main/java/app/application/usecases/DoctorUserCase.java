@@ -4,14 +4,18 @@ import app.domain.model.MedicalOrder;
 import app.domain.model.MedicalRecord;
 import app.domain.model.Patient;
 import app.domain.services.*;
-
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DoctorUserCase {
 
+    @Autowired
     private CreateMedicalRecord createMedicalRecord;
     private SearchMedicalRecordByPatient searchMedicalRecordByPatient;
 
+    @Autowired
     private CreateMedicalOrder createMedicalOrder;
     private SearchMedicalOrderByPatient searchMedicalOrderByPatient;
 

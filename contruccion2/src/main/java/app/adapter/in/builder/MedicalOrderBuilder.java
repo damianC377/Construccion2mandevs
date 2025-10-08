@@ -4,14 +4,19 @@ import app.adapter.in.validators.MedicalOrderValidator;
 import app.adapter.in.validators.PatientValidator;
 import app.adapter.in.validators.UserValidator;
 import app.domain.model.*;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MedicalOrderBuilder {
 
+    @Autowired
     private PatientValidator patientValidator;
+    @Autowired
     private UserValidator userValidator;
+    @Autowired
     private MedicalOrderValidator medicalOrderValidator;
 
 

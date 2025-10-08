@@ -4,11 +4,14 @@ import app.adapter.in.builder.MedicalOrderBuilder;
 import app.application.usecases.NurseUserCase;
 import app.application.usecases.LoginUseCase;
 import app.domain.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Controller
 public class NurseClient {
 
     // Mostrar menú principal
@@ -21,8 +24,11 @@ public class NurseClient {
 
     private static Scanner sc = new Scanner(System.in);
 
+    @Autowired
     private NurseUserCase nurseUserCase;
+    @Autowired
     private MedicalOrderBuilder medicalOrderBuilder;
+    @Autowired
     private LoginUseCase loginUseCase;
 
     // Iniciar sesión y mantener el menú

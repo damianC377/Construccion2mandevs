@@ -7,13 +7,18 @@ import app.domain.model.MedicalRecord;
 import app.domain.model.MedicalOrder;
 import app.domain.model.Patient;
 import app.domain.model.User;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import java.util.List;
 
+@Component
 public class MedicalRecordBuilder {
 
+    @Autowired
     private PatientValidator patientValidator;
+    @Autowired
     private UserValidator userValidator;
+    @Autowired
     private MedicalRecordValidator medicalRecordValidator;
 
     public MedicalRecord build(String patientDocument, String doctorDocument, String orderDate,

@@ -3,10 +3,15 @@ package app.domain.services;
 import app.domain.model.DiagnosticTestInventory;
 import app.domain.model.enums.Role;
 import app.domain.port.DiagnosticTestInventoryPort;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateDiagnosticTestInventory {
-    private UserRequireRole userRequireRole;
+    @Autowired
     private DiagnosticTestInventoryPort diagnosticTestInventoryPort;
+    @Autowired
+    private UserRequireRole userRequireRole;
 
     public void create(DiagnosticTestInventory diagnosticTest) throws Exception {
         // Validar rol

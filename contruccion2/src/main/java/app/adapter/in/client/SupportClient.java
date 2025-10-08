@@ -8,9 +8,12 @@ import app.application.usecases.LoginUseCase;
 import app.domain.model.MedicationInventory;
 import app.domain.model.ProcedureInventory;
 import app.domain.model.DiagnosticTestInventory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.Scanner;
 
+@Controller
 public class SupportClient {
 
     // Mostrar menú principal
@@ -38,10 +41,15 @@ public class SupportClient {
 
     private static Scanner sc = new Scanner(System.in);
 
+    @Autowired
     private SupportUserCase supportUserCase;
+    @Autowired
     private MedicationInventoryBuilder medicationInventoryBuilder;
+    @Autowired
     private ProcedureInventoryBuilder procedureInventoryBuilder;
+    @Autowired
     private DiagnosticTestInventoryBuilder diagnosticTestInventoryBuilder;
+    @Autowired
     private LoginUseCase loginUseCase;
 
     // Iniciar sesión y mantener el menú

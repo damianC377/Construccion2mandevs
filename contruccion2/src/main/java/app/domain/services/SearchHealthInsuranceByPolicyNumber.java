@@ -3,10 +3,14 @@ package app.domain.services;
 import app.domain.model.HealthInsurance;
 import app.domain.model.enums.Role;
 import app.domain.port.HealthInsurancePort;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SearchHealthInsuranceByPolicyNumber {
-	
+    @Autowired
 	private HealthInsurancePort healthInsurancePort;
+    @Autowired
 	private UserRequireRole userRequireRole;
 	
 	public HealthInsurance searchByPolicy(String policyNumber) throws Exception{

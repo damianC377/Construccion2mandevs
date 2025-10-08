@@ -1,5 +1,8 @@
 package app.adapter.in.validators;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MedicationInventoryValidator extends SimpleValidator {
 
     public long idValidator(String value) throws Exception {

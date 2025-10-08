@@ -1,10 +1,13 @@
 package app.domain.services;
 
 import app.domain.model.enums.Role;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserRequireAnyRole {
-	
 	private UserLogin currentUser;
+    @Autowired
 	private UserRequireAuthenticated userRequireAuthenticated;
 	
 

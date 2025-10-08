@@ -1,24 +1,30 @@
 package app.adapter.in.builder;
 
 import java.util.List;
-
 import app.adapter.in.validators.InvoiceValidator;
 import app.adapter.in.validators.MedicalOrderValidator;
 import app.adapter.in.validators.PatientValidator;
 import app.adapter.in.validators.UserValidator;
-import app.domain.model.HealthInsurance;
 import app.domain.model.Invoice;
 import app.domain.model.MedicalOrder;
 import app.domain.model.Order;
 import app.domain.model.Patient;
 import app.domain.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class InvoiceBuilder {
 
+    @Autowired
     private InvoiceValidator invoiceValidator;
+    @Autowired
     private MedicalOrderValidator medicalOrderValidator;
+    @Autowired
     private PatientValidator patientValidator;
+    @Autowired
     private UserValidator userValidator;
+    @Autowired
     private MedicalOrderBuilder medicalOrderBuilder;
 
     public Invoice build(String patientDocument, String doctorDocument, String policyNumber, String policyValidityDays, String policyEndDate,

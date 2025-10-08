@@ -7,11 +7,16 @@ import app.domain.model.Patient;
 import app.domain.model.enums.Role;
 import app.domain.port.InvoicePort;
 import app.domain.port.PatientPort;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SearchInvoiceByPatient {
-	
+    @Autowired
 	private InvoicePort invoicePort;
+    @Autowired
 	private PatientPort patientPort;
+    @Autowired
 	private UserRequireRole userRequireRole;
 	
 	 // Consultar facturas de un paciente

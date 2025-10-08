@@ -3,11 +3,14 @@ package app.domain.services;
 import app.domain.model.Patient;
 import app.domain.model.enums.Role;
 import app.domain.port.PatientPort;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreatePatient {
-
-
+    @Autowired
     private PatientPort patientPort;
+    @Autowired
     private UserRequireRole userRequireRole;
 
     // Crear paciente

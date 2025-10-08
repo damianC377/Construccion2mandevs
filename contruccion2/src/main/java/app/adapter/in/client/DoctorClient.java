@@ -5,11 +5,14 @@ import app.adapter.in.builder.MedicalRecordBuilder;
 import app.application.usecases.DoctorUserCase;
 import app.application.usecases.LoginUseCase;
 import app.domain.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Controller
 public class DoctorClient {
 
     // Mostrar menús
@@ -35,9 +38,13 @@ public class DoctorClient {
     private static Scanner sc = new Scanner(System.in);
 
 
+    @Autowired
     private DoctorUserCase doctorUserCase;
+    @Autowired
     private MedicalRecordBuilder medicalRecordBuilder;
+    @Autowired
     private MedicalOrderBuilder medicalOrderBuilder;
+    @Autowired
     private LoginUseCase loginUseCase;
 
     // Iniciar sesión y mantener el menú

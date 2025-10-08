@@ -3,10 +3,14 @@ package app.domain.services;
 import app.domain.model.User;
 import app.domain.model.enums.Role;
 import app.domain.port.UserPort;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateUser {
-	
+    @Autowired
 	private UserPort userport;
+    @Autowired
 	private UserRequireRole userRequireRole;
 	
 	//Crear un usuario

@@ -1,7 +1,10 @@
 package app.adapter.in.validators;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Date;
 
+@Component
 public class PatientValidator extends SimpleValidator {
 
     public long documentValidator(String value) throws Exception {

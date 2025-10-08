@@ -5,11 +5,16 @@ import app.domain.model.Patient;
 import app.domain.model.enums.Role;
 import app.domain.port.MedicalRecordPort;
 import app.domain.port.PatientPort;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SearchMedicalRecordByPatient {
-	
+    @Autowired
     private PatientPort patientPort;
+    @Autowired
     private MedicalRecordPort medicalRecordPort;
+    @Autowired
     private UserRequireAnyRole RequireAnyRoleService;
 	
 	// Consultar historia clínica por paciente

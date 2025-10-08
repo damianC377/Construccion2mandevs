@@ -2,9 +2,13 @@ package app.adapter.in.builder;
 
 import app.adapter.in.validators.HealthInsuranceValidator;
 import app.domain.model.HealthInsurance;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class HealthInsuranceBuilder {
 
+    @Autowired
     private HealthInsuranceValidator healthInsuranceValidator;
 
     public HealthInsurance build(String companyName, String policyNumber,

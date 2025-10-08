@@ -5,20 +5,26 @@ import app.domain.model.HealthInsurance;
 import app.domain.model.Invoice;
 import app.domain.model.Patient;
 import app.domain.services.*;
-
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class Administrative_StaffUserCase {
 
+    @Autowired
     private CreatePatient createPatient;
     private SearchPatientByDocument searchPatientByDocument;
 
+    @Autowired
     private CreateEmergencyContact createEmergencyContact;
     private SearchEmergencyContactByPatient searchEmergencyContact;
 
+    @Autowired
     private CreateHealthInsurance createHealthInsurance;
     private SearchHealthInsuranceByPatient searchHealthInsuranceByPatient;
 
+    @Autowired
     private CreateInvoice createInvoice;
     private SearchInvoiceByPatient searchInvoiceByPatient;
     private SearchHealthInsuranceByPolicyNumber searchHealthInsuranceByPolicy;

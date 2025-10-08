@@ -3,11 +3,15 @@ package app.domain.services;
 import app.domain.model.MedicationInventory;
 import app.domain.model.enums.Role;
 import app.domain.port.MedicationInventoryPort;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateMedicationInventory {
-
-    private UserRequireRole userRequireRole;
+    @Autowired
     private MedicationInventoryPort medicationInventoryPort;
+    @Autowired
+    private UserRequireRole userRequireRole;
 
     public void create(MedicationInventory medication) throws Exception {
         // Validar rol

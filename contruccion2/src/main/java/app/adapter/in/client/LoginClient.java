@@ -5,11 +5,16 @@ import java.util.Scanner;
 import app.adapter.in.builder.LoginBuilder;
 import app.application.usecases.LoginUseCase;
 import app.domain.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class LoginClient {
 	
 	private static Scanner sc = new Scanner(System.in);
+    @Autowired
 	private LoginBuilder loginBuilder;
+    @Autowired
 	private LoginUseCase loginUseCase;
 	
 	public void start() {

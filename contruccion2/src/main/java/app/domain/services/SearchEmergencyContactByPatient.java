@@ -4,9 +4,14 @@ import app.domain.model.EmergencyContact;
 import app.domain.model.Patient;
 import app.domain.model.enums.Role;
 import app.domain.port.PatientPort;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SearchEmergencyContactByPatient {
+    @Autowired
 	private PatientPort patientPort;
+    @Autowired
 	private UserRequireRole userRequireRole;
 	
 	// Consultar contacto de emergencia por paciente

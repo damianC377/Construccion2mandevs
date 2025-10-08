@@ -3,11 +3,15 @@ package app.domain.services;
 import app.domain.model.ProcedureInventory;
 import app.domain.model.enums.Role;
 import app.domain.port.ProcedureInventoryPort;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SearchProcedureInventoryById {
-
-    private UserRequireRole userRequireRole;
+    @Autowired
     private ProcedureInventoryPort procedureInventoryPort;
+    @Autowired
+    private UserRequireRole userRequireRole;
 
     // Buscar procedimiento en inventario
     public ProcedureInventory search(ProcedureInventory procedure) throws Exception {

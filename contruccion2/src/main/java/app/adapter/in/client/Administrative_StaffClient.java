@@ -9,7 +9,10 @@ import app.adapter.in.builder.InvoiceBuilder;
 import app.application.usecases.Administrative_StaffUserCase;
 import app.application.usecases.LoginUseCase;
 import app.domain.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class Administrative_StaffClient {
 
     private static final String MENU = """
@@ -35,12 +38,17 @@ public class Administrative_StaffClient {
 
     private static Scanner sc = new Scanner(System.in);
 
+    @Autowired
     private Administrative_StaffUserCase staffUseCase;
+    @Autowired
     private LoginUseCase loginUseCase;
-
+    @Autowired
     private PatientBuilder patientBuilder;
+    @Autowired
     private EmergencyContactBuilder emergencyContactBuilder;
+    @Autowired
     private HealthInsuranceBuilder healthInsuranceBuilder;
+    @Autowired
     private InvoiceBuilder invoiceBuilder;
 
     public void session() {

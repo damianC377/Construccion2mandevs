@@ -5,11 +5,16 @@ import app.domain.model.Patient;
 import app.domain.model.enums.Role;
 import app.domain.port.EmergencyContactPort;
 import app.domain.port.PatientPort;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateEmergencyContact {
-
+    @Autowired
     private PatientPort patientPort;
+    @Autowired
     private EmergencyContactPort emergencyContactPort;
+    @Autowired
     private UserRequireRole userRequireRole;
 
     // Crear contacto de emergencia

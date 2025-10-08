@@ -4,15 +4,21 @@ import app.domain.model.MedicationInventory;
 import app.domain.model.ProcedureInventory;
 import app.domain.model.DiagnosticTestInventory;
 import app.domain.services.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SupportUserCase {
 
+    @Autowired
     private CreateMedicationInventory addMedicationInventory;
     private SearchMedicationInventoryById searchMedicationInventoryById;
 
+    @Autowired
     private CreateProcedureInventory addProcedureInventory;
     private SearchProcedureInventoryById searchProcedureInventoryById;
 
+    @Autowired
     private CreateDiagnosticTestInventory addDiagnosticTestInventory;
     private SearchDiagnosticTestInventoryById searchDiagnosticTestInventoryById;
 
