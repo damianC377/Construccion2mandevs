@@ -22,6 +22,8 @@ public class MedicationOrder extends Order {
 
 	public void setMedication(MedicationInventory medication) {
 		this.medication = medication;
+        // el costo del ítem se toma del inventario automáticamente
+        super.setCost(medication.getCost());
 	}
 
 	public void setDosage(String dosage) {

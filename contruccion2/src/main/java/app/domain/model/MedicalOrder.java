@@ -3,14 +3,14 @@ package app.domain.model;
 import java.sql.Date;
 import java.util.List;
 
-//Orden medica que contiene a todas las demas (medicamento, procedimiento,
-//ayudas diagnosticas).
+// Orden médica principal que agrupa los diferentes tipos de órdenes: medicamentos,
+// procedimientos y ayudas diagnósticas.
 public class MedicalOrder {
     private long orderNumber;
     private Patient patient;
     private User doctor;
     private Date orderDate;
-    private List<Order> items;
+    private List<Order> items; // Lista de los subtipos de ordenes
 
     // Getters
     public long getOrderNumber() {

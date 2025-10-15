@@ -21,7 +21,7 @@ public class DiagnosticTestOrder extends Order {
         return requiresSpecialist;
     }
 
-    public String specialist () {
+    public String getSpecialist () {
         return specialist;
     }
 
@@ -30,6 +30,8 @@ public class DiagnosticTestOrder extends Order {
 
     public void setDiagnosticTestInventory(DiagnosticTestInventory diagnosticTestInventory) {
         this.diagnosticTestInventory = diagnosticTestInventory;
+        // el costo del ítem se toma del inventario automáticamente
+        super.setCost(diagnosticTestInventory.getCost());
     }
     public void setQuantity(int quantity) {
         this.quantity = quantity;

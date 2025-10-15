@@ -36,6 +36,8 @@ public class ProcedureOrder extends Order {
 
     public void setProcedure(ProcedureInventory procedure) {
         this.procedure = procedure;
+        // el costo del ítem se toma del inventario automáticamente
+        super.setCost(procedure.getCost());
     }
 
     public void setQuantity(int quantity) {
