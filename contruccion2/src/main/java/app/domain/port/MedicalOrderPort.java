@@ -12,4 +12,6 @@ public interface MedicalOrderPort {
 
     List<MedicalOrder> findByPatient(Patient patient);
 
+    MedicalOrder findByOrderNumber(long orderNumber);
+
 }

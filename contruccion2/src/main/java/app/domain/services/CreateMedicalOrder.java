@@ -12,35 +12,40 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CreateMedicalOrder {
+
     @Autowired
     private MedicalOrderPort medicalOrderPort;
     @Autowired
-	private PatientPort patientPort;
+    private PatientPort patientPort;
     @Autowired
     private UserPort userPort;
     @Autowired
-	private UserRequireRole userRequireRole;
-	 
-	  public void create(MedicalOrder order) throws Exception{
-		  // Validar si el paciente existe
-	        Patient patient = patientPort.findByDocument(order.getPatient());
-	        if (patient == null) {
-	            throw new Exception("El paciente no existe");
-	        }
-	      //Verificacion de personal, cambiar al metodo require role
-	        User doctor = userPort.findByDocument(order.getDoctor());
+    private UserRequireRole userRequireRole;
+    @Autowired
+    private ValidateOrdersRules validateOrdersRules;
 
-	        userRequireRole.requireRole(Role.DOCTOR);
-	        
-	        order.setPatient(patient);
-	        order.setDoctor(doctor);
+    public void create(MedicalOrder order) throws Exception {
+        // Validar si el paciente existe
+        Patient patient = patientPort.findByDocument(order.getPatient());
+        if (patient == null) {
+            throw new Exception("El paciente no existe.");
+        }
 
-	        //Orden creada
-	        medicalOrderPort.save(order);
-	        
-	        
-	  }
-	  
-	
-	
+        //  Validar que el registro lo haga un doctor
+        User doctor = userPort.findByDocument(order.getDoctor());
+        userRequireRole.requireRole(Role.DOCTOR);
+
+        // Asignar entidades validadas
+        order.setPatient(patient);
+        order.setDoctor(doctor);
+
+        // Buscar si ya existe una orden con el mismo número
+        MedicalOrder existingOrder = medicalOrderPort.findByOrderNumber(order.getOrderNumber());
+
+        // Validar reglas de negocio del dominio
+        validateOrdersRules.validate(order, existingOrder);
+
+        medicalOrderPort.save(order);
+    }
 }
+
