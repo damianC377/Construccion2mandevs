@@ -2,7 +2,8 @@ package app.adapter.in.validators;
 
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
+import java.time.LocalDate;
+
 
 @Component
 public class UserValidator extends SimpleValidator {
@@ -23,9 +24,9 @@ public class UserValidator extends SimpleValidator {
         return stringValidator("número de teléfono", value.trim());
     }
 
-    public Date dateOfBirthValidator(String value) throws Exception {
+    public LocalDate dateOfBirthValidator(String value) throws Exception {
         try {
-        	return Date.valueOf(value);
+        	return LocalDate.parse(value);
         } catch(IllegalArgumentException e){
         	throw new Exception("Formato de fecha invalido. Usa yyyy-mm-dd");
         }

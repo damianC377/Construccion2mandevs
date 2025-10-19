@@ -1,8 +1,8 @@
 package app.domain.model;
 
-import java.sql.Date;
-
 import app.domain.model.enums.Role;
+
+import java.time.LocalDate;
 
 public class Person {
     private long id;
@@ -10,7 +10,7 @@ public class Person {
     private long document;
     private String emailAddress;
     private String phoneNumber;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String address;
     private Role role;
 
@@ -35,7 +35,7 @@ public class Person {
         return phoneNumber;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -69,7 +69,7 @@ public class Person {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

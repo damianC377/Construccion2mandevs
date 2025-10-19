@@ -22,7 +22,7 @@ public class CreateUser {
 			}
 			
 			//Validacion de nombre de usuario
-			if(userport.findByuserName(user) != null) {
+			if(userport.findByUserName(user) != null) {
 				throw new Exception("Ya existe nombre de usuario");
 				
 			}

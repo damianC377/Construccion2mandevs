@@ -17,7 +17,7 @@ public class AuthenticeUser {
 		User existing = new User();
 		existing.setUserName(userName.trim().toLowerCase());
 		
-		User user = userport.findByuserName(existing);
+		User user = userport.findByUserName(existing);
 		
 		if(user == null) {
 			throw new Exception("Usuario no encontrado");
