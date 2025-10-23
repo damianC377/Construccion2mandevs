@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long itemNumber; // identificador único por ítem
+    private Long orderNumber; // identificador único por ítem
 
     @Column(nullable = false)
     private double cost;
@@ -20,12 +20,12 @@ public class OrderEntity {
     private MedicalOrderEntity medicalOrder;
 
     // === Getters y Setters ===
-    public Long getItemNumber() {
-        return itemNumber;
+    public Long getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setItemNumber(Long itemNumber) {
-        this.itemNumber = itemNumber;
+    public void setOrderNumber(Long orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public double getCost() {
