@@ -12,9 +12,10 @@ public class EmergencyContactBuilder {
     @Autowired
     private EmergencyContactValidator emergencyContactValidator;
 
-    public EmergencyContact build(String name, String relationship, String phoneNumber) throws Exception {
+    public EmergencyContact build(String document, String name, String relationship, String phoneNumber) throws Exception {
 
         EmergencyContact emergencyContact = new EmergencyContact();
+        emergencyContact.setDocument(emergencyContactValidator.documentValidator(document));
         emergencyContact.setName(emergencyContactValidator.nameValidator(name));
         emergencyContact.setRelationship(emergencyContactValidator.relationshipValidator(relationship));
         emergencyContact.setPhoneNumber(emergencyContactValidator.phoneNumberValidator(phoneNumber));

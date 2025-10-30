@@ -5,9 +5,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProcedureOrderValidator extends SimpleValidator {
 
-    public String procedureValidator(String value) throws Exception {
-        return stringValidator("nombre del procedimiento", value);
-    }
 
     public Integer quantityValidator(String value) throws Exception {
         return integerValidator("cantidad del procedimiento", value);

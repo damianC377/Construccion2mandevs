@@ -5,10 +5,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class DiagnosticTestOrderValidator extends SimpleValidator {
 
-    public String diagnosticTestValidator(String value) throws Exception {
-        return stringValidator("nombre de la ayuda diagnóstica", value);
-    }
-
     public Integer quantityValidator(String value) throws Exception {
         return integerValidator("cantidad de la ayuda diagnóstica", value);
     }

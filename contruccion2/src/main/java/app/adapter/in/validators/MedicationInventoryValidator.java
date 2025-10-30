@@ -5,10 +5,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class MedicationInventoryValidator extends SimpleValidator {
 
-    public long idValidator(String value) throws Exception {
-        return longValidator("el id del medicamento", value);
-    }
-
     public String nameValidator(String value) throws Exception {
         return stringValidator("nombre del medicamento", value);
     }

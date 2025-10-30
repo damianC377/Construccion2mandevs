@@ -6,6 +6,7 @@ import java.util.List;
 // Orden médica principal que agrupa los diferentes tipos de órdenes: medicamentos,
 // procedimientos y ayudas diagnósticas.
 public class MedicalOrder {
+    private long id;
     private long orderNumber;
     private Patient patient;
     private User doctor;
@@ -13,6 +14,9 @@ public class MedicalOrder {
     private List<Order> items; // Lista de los subtipos de ordenes
 
     // Getters
+
+    public long getId() { return id; }
+
     public long getOrderNumber() {
         return orderNumber;
     }
@@ -34,6 +38,9 @@ public class MedicalOrder {
     }
 
     // Setters
+
+    public void setId(long id) { this.id = id; }
+
     public void setOrderNumber(long orderNumber) {
         this.orderNumber = orderNumber;
     }

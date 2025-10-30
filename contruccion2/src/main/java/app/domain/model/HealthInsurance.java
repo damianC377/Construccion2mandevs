@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class HealthInsurance {
     private String companyName;
-    private String policyNumber;
+    private long policyNumber;
     private boolean active;    // true = active, false = inactive
     private Date endDate;
 
@@ -14,7 +14,7 @@ public class HealthInsurance {
         return companyName;
     }
 
-    public String getPolicyNumber() {
+    public long getPolicyNumber() {
         return policyNumber;
     }
 
@@ -32,7 +32,7 @@ public class HealthInsurance {
         this.companyName = companyName;
     }
 
-    public void setPolicyNumber(String policyNumber) {
+    public void setPolicyNumber(long policyNumber) {
         this.policyNumber = policyNumber;
     }
 

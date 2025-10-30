@@ -1,8 +1,7 @@
 package app.adapter.in.validators;
 
-import org.springframework.stereotype.Component;
-
 import java.sql.Date;
+import org.springframework.stereotype.Component;
 
 @Component
 public class PatientValidator extends SimpleValidator {
@@ -37,5 +36,20 @@ public class PatientValidator extends SimpleValidator {
 
     public String emailAddressValidator(String value) throws Exception {
         return stringValidator("correo electrónico del paciente", value);
+    }
+
+    // Validar ID de historia médica
+    public long medicalRecordIdValidator(String value) throws Exception {
+        return longValidator("ID de la historia médica", value);
+    }
+
+    // Validar documento del contacto de emergencia
+    public long emergencyContactDocumentValidator(String value) throws Exception {
+        return longValidator("documento del contacto de emergencia", value);
+    }
+
+    // Validar número de póliza del seguro
+    public String healthInsurancePolicyNumberValidator(String value) throws Exception {
+        return stringValidator("número de póliza del seguro", value);
     }
 }

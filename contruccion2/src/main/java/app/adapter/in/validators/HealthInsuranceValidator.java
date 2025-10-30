@@ -8,19 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class HealthInsuranceValidator extends SimpleValidator {
 
-    public Patient patientValidator(Patient patient) throws Exception {
-        if (patient == null) {
-            throw new Exception("el paciente no puede ser nulo");
-        }
-        return patient;
-    }
-
     public String companyNameValidator(String value) throws Exception {
         return stringValidator("nombre de la compañia de seguro", value);
     }
 
-    public String policyNumberValidator(String value) throws Exception {
-        return stringValidator("número de póliza", value);
+    public long policyNumberValidator(String value) throws Exception {
+        return longValidator("número de póliza", value);
     }
 
     public boolean activeValidator(String value) throws Exception {
