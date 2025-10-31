@@ -12,6 +12,9 @@ public class OrderEntity {
     private Long orderNumber; // identificador único por ítem
 
     @Column(nullable = false)
+    private int itmNumber;
+
+    @Column(nullable = false)
     private double cost;
 
     // Relación inversa con la orden médica principal
@@ -26,6 +29,14 @@ public class OrderEntity {
 
     public void setOrderNumber(Long orderNumber) {
         this.orderNumber = orderNumber;
+    }
+
+    public int getItmNumber() {
+        return itmNumber;
+    }
+
+    public void setItmNumber(int itmNumber) {
+        this.itmNumber = itmNumber;
     }
 
     public double getCost() {

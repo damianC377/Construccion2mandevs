@@ -22,7 +22,7 @@ public abstract class Order {
         public double getCost() {
             return cost;
         }
-        protected void setCost(double cost) {
+        public void setCost(double cost) {
             this.cost = cost;
         }
 
