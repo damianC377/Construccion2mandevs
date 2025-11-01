@@ -1,27 +1,28 @@
 package app.adapter.rest.request;
 
-public class ProcedureOrderRequest extends OrderRequest{
+public class ProcedureOrderRequest extends OrderRequest {
 
-    private long procedureId; // id del procedimiento
-    private int quantity;
+    private String procedureId; // id del procedimiento
+    private String quantity;
     private String frequency;
-    private boolean requiresSpecialist;
+    private String requiresSpecialist;
     private String specialist;
 
     // === Getters y Setters ===
-    public long getProcedureId() {
+
+    public String getProcedureId() {
         return procedureId;
     }
 
-    public void setProcedureId(long procedureId) {
+    public void setProcedureId(String procedureId) {
         this.procedureId = procedureId;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
@@ -33,11 +34,11 @@ public class ProcedureOrderRequest extends OrderRequest{
         this.frequency = frequency;
     }
 
-    public boolean isRequiresSpecialist() {
+    public String getRequiresSpecialist() {
         return requiresSpecialist;
     }
 
-    public void setRequiresSpecialist(boolean requiresSpecialist) {
+    public void setRequiresSpecialist(String requiresSpecialist) {
         this.requiresSpecialist = requiresSpecialist;
     }
 

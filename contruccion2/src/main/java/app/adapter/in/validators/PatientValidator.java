@@ -49,7 +49,7 @@ public class PatientValidator extends SimpleValidator {
     }
 
     // Validar número de póliza del seguro
-    public String healthInsurancePolicyNumberValidator(String value) throws Exception {
-        return stringValidator("número de póliza del seguro", value);
+    public long healthInsurancePolicyNumberValidator(String value) throws Exception {
+        return longValidator("número de póliza del seguro", value);
     }
 }

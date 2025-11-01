@@ -16,7 +16,7 @@ public class HealthInsuranceEntity {
     private String companyName;
 
     @Column(name = "policy_number", nullable = false, length = 50)
-    private String policyNumber;
+    private long policyNumber;
 
     @Column(nullable = false)
     private boolean active;
@@ -42,11 +42,11 @@ public class HealthInsuranceEntity {
         this.companyName = companyName;
     }
 
-    public String getPolicyNumber() {
+    public long getPolicyNumber() {
         return policyNumber;
     }
 
-    public void setPolicyNumber(String policyNumber) {
+    public void setPolicyNumber(long policyNumber) {
         this.policyNumber = policyNumber;
     }
 

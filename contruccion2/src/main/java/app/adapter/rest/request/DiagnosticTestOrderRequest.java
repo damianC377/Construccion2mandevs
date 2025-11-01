@@ -1,34 +1,26 @@
 package app.adapter.rest.request;
 
-public class DiagnosticTestOrderRequest extends OrderRequest{
+public class DiagnosticTestOrderRequest extends OrderRequest {
 
-    private long diagnosticTestInventoryId; // id del examen diagnóstico
-    private int quantity;
-    private boolean requiresSpecialist;
+    private String quantity;
+    private String requiresSpecialist;
     private String specialist;
 
     // === Getters y Setters ===
-    public long getDiagnosticTestInventoryId() {
-        return diagnosticTestInventoryId;
-    }
 
-    public void setDiagnosticTestInventoryId(long diagnosticTestInventoryId) {
-        this.diagnosticTestInventoryId = diagnosticTestInventoryId;
-    }
-
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
-    public boolean isRequiresSpecialist() {
+    public String getRequiresSpecialist() {
         return requiresSpecialist;
     }
 
-    public void setRequiresSpecialist(boolean requiresSpecialist) {
+    public void setRequiresSpecialist(String requiresSpecialist) {
         this.requiresSpecialist = requiresSpecialist;
     }
 

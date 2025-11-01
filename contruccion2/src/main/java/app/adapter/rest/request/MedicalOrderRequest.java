@@ -5,35 +5,36 @@ import java.util.List;
 
 public class MedicalOrderRequest {
 
-    private Long patientId; // ID del paciente
-    private Long doctorId;  // ID del doctor
-    private Date orderDate; // Fecha de creación de la orden
+    private String patientId; // ID del paciente
+    private String doctorId;  // ID del doctor
+    private String orderDate; // Fecha de creación de la orden
 
     // Lista con los IDs de las subórdenes (medicamentos, procedimientos, diagnósticos)
     private List<Long> itemIds;
 
     // === Getters y Setters ===
-    public Long getPatientId() {
+
+    public String getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(Long patientId) {
+    public void setPatientId(String patientId) {
         this.patientId = patientId;
     }
 
-    public Long getDoctorId() {
+    public String getDoctorId() {
         return doctorId;
     }
 
-    public void setDoctorId(Long doctorId) {
+    public void setDoctorId(String doctorId) {
         this.doctorId = doctorId;
     }
 
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 

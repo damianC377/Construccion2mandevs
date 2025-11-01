@@ -2,17 +2,17 @@ package app.adapter.rest.request;
 
 public class OrderRequest {
 
-    private Long orderNumber;   // opcional, se genera al guardar
+    private String orderNumber;   // opcional, se genera al guardar
     private int itemNumber;
     private double cost;
-    private Long medicalOrderId; // ID de la orden médica asociada
+    private String medicalOrderId; // ID de la orden médica asociada
 
     // === Getters y Setters ===
-    public Long getOrderNumber() {
+    public String getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(Long orderNumber) {
+    public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
     }
 
@@ -32,11 +32,4 @@ public class OrderRequest {
         this.cost = cost;
     }
 
-    public Long getMedicalOrderId() {
-        return medicalOrderId;
-    }
-
-    public void setMedicalOrderId(Long medicalOrderId) {
-        this.medicalOrderId = medicalOrderId;
-    }
 }

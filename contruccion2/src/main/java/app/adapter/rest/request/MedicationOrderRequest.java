@@ -2,19 +2,10 @@ package app.adapter.rest.request;
 
 public class MedicationOrderRequest extends OrderRequest{
 
-    private long medicationId; // id del medicamento
     private String dosage;
     private String treatmentDuration;
 
     // === Getters y Setters ===
-    public long getMedicationId() {
-        return medicationId;
-    }
-
-    public void setMedicationId(long medicationId) {
-        this.medicationId = medicationId;
-    }
-
     public String getDosage() {
         return dosage;
     }
