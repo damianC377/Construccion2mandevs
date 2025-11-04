@@ -1,5 +1,6 @@
 package app.domain.services;
 
+import app.application.exceptions.BusinessException;
 import app.domain.model.ProcedureInventory;
 import app.domain.model.enums.Role;
 import app.domain.port.ProcedureInventoryPort;
@@ -30,7 +31,7 @@ public class CreateProcedureInventory {
         // Validar duplicados
         ProcedureInventory existing = procedureInventoryPort.findById(procedure);
         if (existing != null) {
-            throw new Exception("El procedimiento ya está registrado en el inventario");
+            throw new BusinessException("El procedimiento ya está registrado en el inventario");
         }
 
         // Guardar en inventario

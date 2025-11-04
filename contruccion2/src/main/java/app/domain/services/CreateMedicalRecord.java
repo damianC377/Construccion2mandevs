@@ -1,5 +1,6 @@
 package app.domain.services;
 
+import app.application.exceptions.BusinessException;
 import app.domain.model.MedicalRecord;
 import app.domain.model.Patient;
 import app.domain.model.User;
@@ -35,7 +36,7 @@ public class CreateMedicalRecord {
 
         // Validar que el paciente no tenga ya historia clínica
         if (medicalRecordPort.findByPatient(patient) != null) {
-            throw new Exception("El paciente ya tiene una historia clínica registrada");
+            throw new BusinessException("El paciente ya tiene una historia clínica registrada");
         }
 
         medicalRecord.setPatient(patient);

@@ -1,5 +1,6 @@
 package app.domain.services;
 
+import app.application.exceptions.BusinessException;
 import app.domain.model.DiagnosticTestInventory;
 import app.domain.model.enums.Role;
 import app.domain.port.DiagnosticTestInventoryPort;
@@ -30,7 +31,7 @@ public class CreateDiagnosticTestInventory {
         // Validar duplicados
         DiagnosticTestInventory existing = diagnosticTestInventoryPort.findById(diagnosticTest);
         if (existing != null) {
-            throw new Exception("El test diagnóstico ya está registrado en el inventario");
+            throw new BusinessException("El test diagnóstico ya está registrado en el inventario");
         }
 
         // Guardar en inventario

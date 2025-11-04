@@ -1,5 +1,6 @@
 package app.domain.services;
 
+import app.application.exceptions.BusinessException;
 import app.domain.model.EmergencyContact;
 import app.domain.model.Patient;
 import app.domain.model.enums.Role;
@@ -30,7 +31,7 @@ public class CreateEmergencyContact {
 
         // Validar que el paciente no tenga contacto registrado
         if (patient.getEmergencyContact() != null) {
-            throw new Exception("Este paciente ya tiene un contacto de emergencia registrado");
+            throw new BusinessException("Este paciente ya tiene un contacto de emergencia registrado");
         }
 
         // Asociar contacto al paciente

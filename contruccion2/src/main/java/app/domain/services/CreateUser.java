@@ -1,5 +1,6 @@
 package app.domain.services;
 
+import app.application.exceptions.BusinessException;
 import app.domain.model.User;
 import app.domain.model.enums.Role;
 import app.domain.port.UserPort;
@@ -18,12 +19,12 @@ public class CreateUser {
 			
 			//Validar que solo exista una persona con la cedula
 			if(userport.findByDocument(user) != null) {
-				throw new Exception("Ya existe una persona con esta cedula");
+				throw new BusinessException("Ya existe una persona con esta cedula");
 			}
 			
 			//Validacion de nombre de usuario
 			if(userport.findByUserName(user) != null) {
-				throw new Exception("Ya existe nombre de usuario");
+				throw new BusinessException("Ya existe nombre de usuario");
 				
 			}
 			
