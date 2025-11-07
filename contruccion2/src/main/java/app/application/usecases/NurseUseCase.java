@@ -1,15 +1,19 @@
 package app.application.usecases;
 
+import app.domain.services.CreateMedicalOrder;
+import app.domain.services.CreateMedicalRecord;
+import app.domain.services.SearchMedicalOrderByPatient;
+import app.domain.services.SearchMedicalRecordByPatient;
+import app.domain.services.SearchPatientByDocument;
+import java.util.List;
 import app.domain.model.MedicalOrder;
 import app.domain.model.MedicalRecord;
 import app.domain.model.Patient;
-import app.domain.services.*;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DoctorUserCase {
+public class NurseUseCase {
 
     @Autowired
     private CreateMedicalRecord createMedicalRecord;
@@ -40,7 +44,6 @@ public class DoctorUserCase {
     // Buscar paciente
     public Patient searchPatientByDocument(Patient patient) throws Exception{
         return searchPatientByDocument.search(patient);
+
     }
-
-
 }
