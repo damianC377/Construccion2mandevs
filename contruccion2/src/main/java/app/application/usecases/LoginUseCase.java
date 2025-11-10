@@ -1,29 +1,19 @@
 package app.application.usecases;
 
-import app.domain.model.User;
-import app.domain.services.AuthenticeUser;
-import app.domain.services.UserLogin;
+import app.domain.model.auth.AuthCredentials;
+import app.domain.model.auth.TokenResponse;
+import app.domain.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class LoginUseCase {
 
     @Autowired
-	private AuthenticeUser authenticeUser;
+    private AuthenticationService authenticationService;
 
-    @Autowired
-	private UserLogin userLogin;
-	
-	public User loginUseCase(String userName, String password) throws Exception {
-		return authenticeUser.authentice(userName, password);
-	}
-	
-	public User getUserCurrent() {
-		return userLogin.getCurrent();
-	}
-	
-	public void logout() {
-		userLogin.logout();
-	}
+    // Metodo para iniciar sesión
+    public TokenResponse login(AuthCredentials credentials) throws Exception {
+        return authenticationService.authenticate(credentials); // Llama al servicio y devuelve token
+    }
 }
