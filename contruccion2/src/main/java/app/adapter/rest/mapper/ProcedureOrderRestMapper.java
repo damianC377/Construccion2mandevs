@@ -1,5 +1,7 @@
 package app.adapter.rest.mapper;
 
+import app.adapter.in.builder.ProcedureOrderBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import app.domain.model.ProcedureInventory;
 import app.domain.model.ProcedureOrder;
@@ -9,27 +11,28 @@ import app.adapter.rest.response.ProcedureOrderResponse;
 @Component
 public class ProcedureOrderRestMapper {
 
+
+    @Autowired
+    private ProcedureOrderBuilder procedureOrderBuilder;
+
     // Convierte el request (JSON del cliente) al modelo de dominio
-    public ProcedureOrder toDomain(ProcedureOrderRequest req) {
-        ProcedureOrder order = new ProcedureOrder();
-        order.setItemNumber(req.getItemNumber());
-        order.setCost(req.getCost());
-        order.setQuantity(req.getQuantity());
-        order.setFrequency(req.getFrequency());
-        order.setRequiresSpecialist(req.isRequiresSpecialist());
-        order.setSpecialist(req.getSpecialist());
-
-        ProcedureInventory procedure = new ProcedureInventory();
-        procedure.setId(req.getProcedureId());
-
-        order.setProcedure(procedure);
-
-        return order;
+    public ProcedureOrder toDomain(ProcedureOrderRequest req) throws Exception {
+        return procedureOrderBuilder.build(
+                req.getOrderNumber(),
+                req.getItemNumber(),
+                req.getCost(),
+                req.getProcedureId(),
+                req.getQuantity(),
+                req.getFrequency(),
+                req.getRequiresSpecialist(),
+                req.getSpecialist()
+        );
     }
 
     // Convierte el modelo de dominio a un objeto de respuesta JSON
     public ProcedureOrderResponse toResponse(ProcedureOrder order) {
         ProcedureOrderResponse res = new ProcedureOrderResponse();
+
         res.setItemNumber(order.getItemNumber());
         res.setCost(order.getCost());
         res.setQuantity(order.getQuantity());
@@ -38,7 +41,9 @@ public class ProcedureOrderRestMapper {
         res.setSpecialist(order.getSpecialist());
 
         if (order.getProcedure() != null) {
-            res.setProcedureName(order.getProcedure().getName());
+            ProcedureInventory procedure = order.getProcedure();
+            res.setProcedureId(procedure.getId());
+            res.setProcedureName(procedure.getName());
         }
 
         return res;

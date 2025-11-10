@@ -40,4 +40,18 @@ public abstract class SimpleValidator {
         }
     }
 
+    public boolean booleanValidator(String element, String value) throws Exception {
+        stringValidator(element, value);
+        try {
+            if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false")) {
+                return Boolean.parseBoolean(value);
+            } else {
+                throw new InputsException(element + " debe ser 'true' o 'false'");
+            }
+        } catch (Exception e) {
+            throw new InputsException(element + " debe ser un valor booleano válido (true/false)");
+        }
+    }
+
+
 }

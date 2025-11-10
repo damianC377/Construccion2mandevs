@@ -1,5 +1,7 @@
 package app.adapter.rest.mapper;
 
+import app.adapter.in.builder.MedicationOrderBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import app.domain.model.MedicationInventory;
 import app.domain.model.MedicationOrder;
@@ -9,18 +11,18 @@ import app.adapter.rest.response.MedicationOrderResponse;
 @Component
 public class MedicationOrderRestMapper {
 
-    public MedicationOrder toDomain(MedicationOrderRequest req) {
-        MedicationOrder order = new MedicationOrder();
-        order.setItemNumber(req.getItemNumber());
-        order.setCost(req.getCost());
-        order.setDosage(req.getDosage());
-        order.setTreatmentDuration(req.getTreatmentDuration());
+    @Autowired
+    private MedicationOrderBuilder medicationOrderBuilder;
 
-        MedicationInventory medication = new MedicationInventory();
-        medication.setId(req.getMedicationId());
-        order.setMedication(medication);
-
-        return order;
+    public MedicationOrder toDomain(MedicationOrderRequest req) throws Exception {
+        return medicationOrderBuilder.build(
+                req.getOrderNumber(),
+                req.getItemNumber(),
+                req.getCost(),
+                req.getMedicationInventoryId(),
+                req.getDosage(),
+                req.getTreatmentDuration()
+                );
     }
 
     public MedicationOrderResponse toResponse(MedicationOrder order) {
@@ -30,8 +32,11 @@ public class MedicationOrderRestMapper {
         res.setDosage(order.getDosage());
         res.setTreatmentDuration(order.getTreatmentDuration());
 
+
         if (order.getMedication() != null) {
-            res.setMedicationName(order.getMedication().getName());
+            MedicationInventory medicationInventory = order.getMedication();
+            res.setMedicationId(medicationInventory.getId());
+            res.setMedicationName(medicationInventory.getName());
         }
 
         return res;

@@ -5,6 +5,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProcedureOrderValidator extends SimpleValidator {
 
+    public long procedureInventoryIdValidator(String value) throws Exception{
+        return longValidator("Id del procedimiento: ", value);
+    }
 
     public Integer quantityValidator(String value) throws Exception {
         return integerValidator("cantidad del procedimiento", value);
@@ -14,11 +17,16 @@ public class ProcedureOrderValidator extends SimpleValidator {
         return stringValidator("frecuencia del procedimiento", value);
     }
 
-    public Boolean requiresSpecialistValidator(Boolean value) throws Exception {
+    public Boolean requiresSpecialistValidator(String value) throws Exception {
         if (value == null) {
             throw new Exception("El campo 'requiere especialista' no puede ser nulo");
         }
-        return value;
+
+        if (!value.equalsIgnoreCase("true") && !value.equalsIgnoreCase("false")){
+            throw new Exception("El campo 'requiere especialista' debe ser 'true' o 'false'");
+        }
+
+        return Boolean.parseBoolean(value);
     }
 
     public String specialistValidator(String value) throws Exception {
