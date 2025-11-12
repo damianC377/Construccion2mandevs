@@ -1,33 +1,41 @@
 package app.adapter.rest.request;
 
-import java.sql.Date;
 import java.util.List;
 
 public class MedicalOrderRequest {
 
-    private String patientId; // ID del paciente
-    private String doctorId;  // ID del doctor
-    private String orderDate; // Fecha de creación de la orden
+    private String orderNumber; // opcional, se puede enviar o generar
+    private String patientDocument; // documento del paciente
+    private String doctorDocument;  // documento del doctor
+    private String orderDate; // Fecha de creación de la orden (yyyy-mm-dd)
 
-    // Lista con los IDs de las subórdenes (medicamentos, procedimientos, diagnósticos)
-    private List<Long> itemIds;
+    // Lista con los sub-requests (medicamentos, procedimientos, diagnósticos)
+    private List<OrderRequest> items;
 
     // === Getters y Setters ===
 
-    public String getPatientId() {
-        return patientId;
+    public String getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setPatientId(String patientId) {
-        this.patientId = patientId;
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
-    public String getDoctorId() {
-        return doctorId;
+    public String getPatientDocument() {
+        return patientDocument;
     }
 
-    public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
+    public void setPatientDocument(String patientDocument) {
+        this.patientDocument = patientDocument;
+    }
+
+    public String getDoctorDocument() {
+        return doctorDocument;
+    }
+
+    public void setDoctorDocument(String doctorDocument) {
+        this.doctorDocument = doctorDocument;
     }
 
     public String getOrderDate() {
@@ -38,11 +46,11 @@ public class MedicalOrderRequest {
         this.orderDate = orderDate;
     }
 
-    public List<Long> getItemIds() {
-        return itemIds;
+    public List<OrderRequest> getItems() {
+        return items;
     }
 
-    public void setItemIds(List<Long> itemIds) {
-        this.itemIds = itemIds;
+    public void setItems(List<OrderRequest> items) {
+        this.items = items;
     }
 }

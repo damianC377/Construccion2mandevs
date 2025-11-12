@@ -62,7 +62,8 @@ public class MedicalOrderBuilder {
                 procedureOrder.setProcedure(proc.getProcedure());
                 procedureOrder.setQuantity(procedureOrderValidator.quantityValidator(String.valueOf(proc.getQuantity())));
                 procedureOrder.setFrequency(procedureOrderValidator.frequencyValidator(proc.getFrequency()));
-                procedureOrder.setRequiresSpecialist(procedureOrderValidator.requiresSpecialistValidator(proc.isRequiresSpecialist()));
+                // Convertir boolean a String antes de validar
+                procedureOrder.setRequiresSpecialist(procedureOrderValidator.requiresSpecialistValidator(String.valueOf(proc.isRequiresSpecialist())));
                 procedureOrder.setSpecialist(procedureOrderValidator.specialistValidator(proc.getSpecialist()));
                 procedureOrder.setItemNumber(proc.getItemNumber());
                 validatedItems.add(procedureOrder);
@@ -73,7 +74,8 @@ public class MedicalOrderBuilder {
                 DiagnosticTestOrder diagnosticOrder = new DiagnosticTestOrder();
                 diagnosticOrder.setDiagnosticTestInventory(diag.getDiagnosticTestInventory());
                 diagnosticOrder.setQuantity(diagnosticTestOrderValidator.quantityValidator(String.valueOf(diag.getQuantity())));
-                diagnosticOrder.setRequiresSpecialist(diagnosticTestOrderValidator.requiresSpecialistValidator(diag.isRequiresSpecialist()));
+                // Convertir boolean a String antes de validar
+                diagnosticOrder.setRequiresSpecialist(diagnosticTestOrderValidator.requiresSpecialistValidator(String.valueOf(diag.isRequiresSpecialist())));
                 diagnosticOrder.setSpecialist(diagnosticTestOrderValidator.specialistValidator(diag.getSpecialist()));
                 diagnosticOrder.setItemNumber(diag.getItemNumber());
                 validatedItems.add(diagnosticOrder);

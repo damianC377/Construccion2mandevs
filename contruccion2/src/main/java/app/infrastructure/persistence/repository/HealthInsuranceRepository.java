@@ -6,6 +6,6 @@ import app.infrastructure.persistence.entities.HealthInsuranceEntity;
 
 @Repository
 public interface HealthInsuranceRepository extends JpaRepository<HealthInsuranceEntity, Long> {
-    // Buscar por número de póliza
-    HealthInsuranceEntity findByPolicyNumber(String policyNumber);
+    // Buscar por número de póliza (tipo Long en la entidad)
+    HealthInsuranceEntity findByPolicyNumber(Long policyNumber);
 }

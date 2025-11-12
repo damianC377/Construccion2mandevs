@@ -9,6 +9,10 @@ import app.domain.model.MedicalOrder;
 import app.domain.model.Order;
 
 import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Collections;
+
+import app.adapter.in.builder.MedicalOrderBuilder;
 
 @Component
 public class MedicalOrderRestMapper {
@@ -16,26 +20,26 @@ public class MedicalOrderRestMapper {
     @Autowired
     private OrderRestMapper orderRestMapper; // 🔹 Mapea los diferentes tipos de subórdenes
 
+    @Autowired
+    private MedicalOrderBuilder medicalOrderBuilder;
+
     /**
      * Convierte un objeto Request (del cliente) a un objeto del dominio.
      */
     public MedicalOrder toDomain(MedicalOrderRequest req) throws Exception {
         if (req == null) return null;
 
-        MedicalOrder order = new MedicalOrder();
-        order.setOrderNumber(req.getOrderNumber());
-        order.setOrderDate(req.getOrderDate());
-        order.setDoctor(req.getDoctor());
-        order.setPatient(req.getPatient());
+        List<Order> rawItems = (req.getItems() != null && !req.getItems().isEmpty())
+                ? req.getItems().stream().map(orderRestMapper::toDomain).collect(Collectors.toList())
+                : Collections.emptyList();
 
-        // 🔹 Convierte los ítems (subórdenes) del request al dominio
-        if (req.getItems() != null && !req.getItems().isEmpty()) {
-            order.setItems(req.getItems().stream()
-                    .map(orderRestMapper::toDomain)
-                    .collect(Collectors.toList()));
-        }
-
-        return order;
+        return medicalOrderBuilder.build(
+                req.getPatientDocument(),
+                req.getDoctorDocument(),
+                req.getOrderDate(),
+                req.getOrderNumber(),
+                rawItems
+        );
     }
 
     /**
@@ -47,13 +51,17 @@ public class MedicalOrderRestMapper {
         MedicalOrderResponse res = new MedicalOrderResponse();
         res.setOrderNumber(domain.getOrderNumber());
         res.setOrderDate(domain.getOrderDate());
-        res.setDoctor(domain.getDoctor());
-        res.setPatient(domain.getPatient());
+        res.setPatientName(domain.getPatient() != null ? domain.getPatient().getFullName() : null);
+        res.setDoctorName(domain.getDoctor() != null ? domain.getDoctor().getUserName() : null);
 
         // 🔹 Convierte los ítems a response usando el OrderRestMapper
         if (domain.getItems() != null && !domain.getItems().isEmpty()) {
-            res.setItems(domain.getItems().stream()
-                    .map(orderRestMapper::toResponse)
+            res.setItemsSummary(domain.getItems().stream()
+                    .map(o -> {
+                        var r = orderRestMapper.toResponse(o);
+                        // resumen simple: tipo + itemNumber
+                        return r.getClass().getSimpleName() + "#" + r.getItemNumber();
+                    })
                     .collect(Collectors.toList()));
         }
 

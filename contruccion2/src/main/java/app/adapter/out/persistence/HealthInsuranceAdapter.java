@@ -33,8 +33,16 @@ public class HealthInsuranceAdapter implements HealthInsurancePort {
 
     @Override
     public HealthInsurance findByPolicyNumber(String policyNumber) throws Exception {
-        // Buscar por número de póliza
-        HealthInsuranceEntity entity = healthInsuranceRepository.findByPolicyNumber(policyNumber);
+        // Intentar convertir la cadena a Long antes de consultar el repositorio
+        Long policyNum;
+        try {
+            policyNum = Long.parseLong(policyNumber);
+        } catch (NumberFormatException e) {
+            throw new Exception("Número de póliza inválido: debe ser numérico", e);
+        }
+
+        // Buscar por número de póliza (Long)
+        HealthInsuranceEntity entity = healthInsuranceRepository.findByPolicyNumber(policyNum);
         // Conversión de entidad a dominio
         return HealthInsuranceMapper.toDomain(entity);
     }

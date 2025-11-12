@@ -7,8 +7,22 @@ import app.adapter.rest.response.*;
 import app.domain.model.*;
 import java.util.Objects;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import app.adapter.in.builder.MedicationOrderBuilder;
+import app.adapter.in.builder.ProcedureOrderBuilder;
+import app.adapter.in.builder.DiagnosticTestOrderBuilder;
+
 @Component
 public class OrderRestMapper {
+
+    @Autowired
+    private MedicationOrderBuilder medicationOrderBuilder;
+
+    @Autowired
+    private ProcedureOrderBuilder procedureOrderBuilder;
+
+    @Autowired
+    private DiagnosticTestOrderBuilder diagnosticTestOrderBuilder;
 
     /**
      * Convierte un objeto Request (del cliente) a una suborden del dominio.
@@ -19,48 +33,53 @@ public class OrderRestMapper {
 
         // Si contiene información de medicamento → es una MedicationOrder
         if (req instanceof MedicationOrderRequest medicationReq) {
-            MedicationOrder medicationOrder = new MedicationOrder();
-            medicationOrder.setDosage(medicationReq.getDosage());
-            medicationOrder.setTreatmentDuration(medicationReq.getTreatmentDuration());
-            medicationOrder.setItemNumber(medicationReq.getItemNumber());
-            medicationOrder.setCost(medicationReq.getCost());
-
-            MedicationInventory medication =  new MedicationInventory();
-            medication.setId(medicationReq.getMedicationId());
-            medicationOrder.setMedication(medication);
-            return medicationOrder;
+            try {
+                return medicationOrderBuilder.build(
+                        medicationReq.getOrderNumber(),
+                        medicationReq.getItemNumber(),
+                        medicationReq.getCost(),
+                        medicationReq.getMedicationInventoryId(),
+                        medicationReq.getDosage(),
+                        medicationReq.getTreatmentDuration()
+                );
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
 
         // Si contiene información de procedimiento → es una ProcedureOrder
         if (req instanceof ProcedureOrderRequest procedureReq) {
-            ProcedureOrder procedureOrder = new ProcedureOrder();
-            procedureOrder.setQuantity(procedureReq.getQuantity());
-            procedureOrder.setFrequency(procedureReq.getFrequency());
-            procedureOrder.setRequiresSpecialist(procedureReq.isRequiresSpecialist());
-            procedureOrder.setSpecialist(procedureReq.getSpecialist());
-            procedureOrder.setItemNumber(procedureReq.getItemNumber());
-            procedureOrder.setCost(procedureReq.getCost());
-
-            ProcedureInventory procedure = new ProcedureInventory();
-            procedure.setId(procedureReq.getProcedureId()); // solo ID
-            procedureOrder.setProcedure(procedure);
-
-            return procedureOrder;
+            try {
+                return procedureOrderBuilder.build(
+                        procedureReq.getOrderNumber(),
+                        procedureReq.getItemNumber(),
+                        procedureReq.getCost(),
+                        procedureReq.getProcedureId(),
+                        procedureReq.getQuantity(),
+                        procedureReq.getFrequency(),
+                        procedureReq.getRequiresSpecialist(),
+                        procedureReq.getSpecialist()
+                );
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
 
         // Si contiene información de prueba diagnóstica → DiagnosticTestOrder
         if (req instanceof DiagnosticTestOrderRequest diagnosticReq) {
-            DiagnosticTestOrder diagnosticOrder = new DiagnosticTestOrder();
-            diagnosticOrder.setQuantity(diagnosticReq.getQuantity());
-            diagnosticOrder.setRequiresSpecialist(diagnosticReq.isRequiresSpecialist());
-            diagnosticOrder.setSpecialist(diagnosticReq.getSpecialist());
-            diagnosticOrder.setItemNumber(diagnosticReq.getItemNumber());
-            diagnosticOrder.setCost(diagnosticReq.getCost());
-
-            DiagnosticTestInventory diagnostic = new DiagnosticTestInventory();
-            diagnostic.setId(diagnosticReq.getDiagnosticTestInventoryId());
-            diagnosticOrder.setDiagnosticTestInventory(diagnostic);
-            return diagnosticOrder;
+            try {
+                return diagnosticTestOrderBuilder.build(
+                        diagnosticReq.getOrderNumber(),
+                        diagnosticReq.getItemNumber(),
+                        diagnosticReq.getCost(),
+                        diagnosticReq.getDiagnosticTestInventoryId(),
+                        diagnosticReq.getQuantity(),
+                        diagnosticReq.getRequiresSpecialist(),
+                        diagnosticReq.getSpecialist()
+                );
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
 
         // Si no coincide con ninguno, retorna null o lanza excepción
