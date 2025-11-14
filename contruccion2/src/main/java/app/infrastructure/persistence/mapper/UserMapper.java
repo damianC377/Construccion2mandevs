@@ -19,6 +19,7 @@ public class UserMapper {
         Entity.setRole(user.getRole().name());
         Entity.setUserName(user.getUserName());
         Entity.setPassword(user.getPassword());
+        Entity.setPhoneNumber(user.getPhoneNumber());
 
         return Entity;
     }

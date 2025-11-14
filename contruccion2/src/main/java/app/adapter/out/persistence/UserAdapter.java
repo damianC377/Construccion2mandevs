@@ -22,7 +22,7 @@ public class UserAdapter implements UserPort {
 
     @Override
     public User findByUserName(User user) throws Exception {
-        UserEntity userEntity = userRepository.findByUsername(user.getUserName());
+        UserEntity userEntity = userRepository.findByUserName(user.getUserName());
         return UserMapper.toDomain(userEntity);
     }
 
