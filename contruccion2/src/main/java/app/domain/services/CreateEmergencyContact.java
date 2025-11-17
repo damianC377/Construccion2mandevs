@@ -8,6 +8,8 @@ import app.domain.port.EmergencyContactPort;
 import app.domain.port.PatientPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Service
 public class CreateEmergencyContact {
@@ -15,8 +17,6 @@ public class CreateEmergencyContact {
     private PatientPort patientPort;
     @Autowired
     private EmergencyContactPort emergencyContactPort;
-    @Autowired
-    private UserRequireRole userRequireRole;
 
     // Crear contacto de emergencia
     public void create(EmergencyContact contact, Patient patient) throws Exception {
@@ -27,7 +27,7 @@ public class CreateEmergencyContact {
         }
 
         // Validar que lo registre personal administrativo
-        userRequireRole.requireRole(Role.ADMINISTRATIVE_STAFF);
+        requireRole(Role.ADMINISTRATIVE_STAFF);
 
         // Validar que el paciente no tenga contacto registrado
         if (patient.getEmergencyContact() != null) {
@@ -38,6 +38,16 @@ public class CreateEmergencyContact {
         patient.setEmergencyContact(contact);
 
         emergencyContactPort.save(contact);
+    }
+
+    private void requireRole(Role role) throws BusinessException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated()) {
+            throw new BusinessException("Usuario no autenticado");
+        }
+        String needed = "ROLE_" + role.name();
+        boolean ok = auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals(needed));
+        if (!ok) throw new BusinessException("Acceso denegado");
     }
 
 }

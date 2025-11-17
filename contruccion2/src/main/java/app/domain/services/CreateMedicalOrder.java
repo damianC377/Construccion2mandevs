@@ -9,6 +9,9 @@ import app.domain.port.PatientPort;
 import app.domain.port.UserPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import app.application.exceptions.BusinessException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Service
 public class CreateMedicalOrder {
@@ -19,8 +22,6 @@ public class CreateMedicalOrder {
     private PatientPort patientPort;
     @Autowired
     private UserPort userPort;
-    @Autowired
-    private UserRequireRole userRequireRole;
     @Autowired
     private ValidateOrdersRules validateOrdersRules;
 
@@ -33,7 +34,7 @@ public class CreateMedicalOrder {
 
         //  Validar que el registro lo haga un doctor
         User doctor = userPort.findByDocument(order.getDoctor());
-        userRequireRole.requireRole(Role.DOCTOR);
+        requireRole(Role.DOCTOR);
 
         // Asignar entidades validadas
         order.setPatient(patient);
@@ -46,6 +47,16 @@ public class CreateMedicalOrder {
         validateOrdersRules.validate(order, existingOrder);
 
         medicalOrderPort.save(order);
+    }
+
+    private void requireRole(Role role) throws BusinessException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated()) {
+            throw new BusinessException("Usuario no autenticado");
+        }
+        String needed = "ROLE_" + role.name();
+        boolean ok = auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals(needed));
+        if (!ok) throw new BusinessException("Acceso denegado");
     }
 }
 

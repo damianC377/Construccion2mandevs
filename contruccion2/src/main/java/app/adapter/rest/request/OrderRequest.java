@@ -5,7 +5,7 @@ public class OrderRequest {
     private String orderNumber;   // opcional, se genera al guardar
     private String itemNumber;
     private String cost;
-    private String medicalOrderId; // ID de la orden médica asociada
+    
 
     // === Getters y Setters ===
     public String getOrderNumber() {

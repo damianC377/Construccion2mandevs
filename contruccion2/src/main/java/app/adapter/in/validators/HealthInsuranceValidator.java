@@ -2,7 +2,6 @@ package app.adapter.in.validators;
 
 import java.sql.Date;
 
-import app.domain.model.Patient;
 import org.springframework.stereotype.Component;
 
 @Component

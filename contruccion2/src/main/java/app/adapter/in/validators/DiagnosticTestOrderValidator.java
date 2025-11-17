@@ -1,6 +1,5 @@
 package app.adapter.in.validators;
 
-import app.domain.model.DiagnosticTestInventory;
 import org.springframework.stereotype.Component;
 
 @Component

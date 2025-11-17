@@ -1,13 +1,12 @@
 package app.infrastructure.persistence.mapper;
 
 import app.domain.model.MedicalRecord;
-import app.domain.model.MedicalOrder;
 import app.domain.model.Patient;
 import app.domain.model.User;
 import app.infrastructure.persistence.entities.MedicalRecordEntity;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class MedicalRecordMapper {
 

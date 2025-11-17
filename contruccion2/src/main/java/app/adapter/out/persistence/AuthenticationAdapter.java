@@ -11,8 +11,8 @@ public class AuthenticationAdapter implements AuthenticationPort {
 
     private final JwtUtils jwtUtils;
 
-    public AuthenticationAdapter() {
-        this.jwtUtils = new JwtUtils();
+    public AuthenticationAdapter(JwtUtils jwtUtils) {
+        this.jwtUtils = jwtUtils;
     }
 
     @Override

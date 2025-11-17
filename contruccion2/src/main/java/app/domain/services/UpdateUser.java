@@ -5,13 +5,14 @@ import app.domain.model.enums.Role;
 import app.domain.port.UserPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+ 
 
 @Service
 public class UpdateUser {
-    @Autowired
+	@Autowired
 	private UserPort userport;
-    @Autowired
-	private UserRequireRole userRequireRole;
+	@Autowired
+	private AuthenticationService authenticationService;
 	
 	//Actualizar datos del usuario
 		public void updateUser(long document, User newdata) throws Exception{
@@ -53,8 +54,11 @@ public class UpdateUser {
 				user.setRole(newdata.getRole());
 			}
 			
-			userRequireRole.requireRole(Role.HUMAN_RESOURCES);
+			authenticationService.requireRole(Role.HUMAN_RESOURCES);
 			
 			userport.save(existing);
 		}
+    
+    
+
 }

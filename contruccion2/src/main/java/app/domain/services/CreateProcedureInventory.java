@@ -6,17 +6,17 @@ import app.domain.model.enums.Role;
 import app.domain.port.ProcedureInventoryPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Service
 public class CreateProcedureInventory {
     @Autowired
     private ProcedureInventoryPort procedureInventoryPort;
-    @Autowired
-    private UserRequireRole userRequireRole;
 
     public void create(ProcedureInventory procedure) throws Exception {
         // Validar rol
-        userRequireRole.requireRole(Role.SUPPORT);
+        requireRole(Role.SUPPORT);
 
         // Validar que no esté vacío
         if (procedure == null || procedure.getName() == null) {
@@ -38,6 +38,15 @@ public class CreateProcedureInventory {
         procedureInventoryPort.save(procedure);
     }
 
+    private void requireRole(Role role) throws BusinessException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated()) {
+            throw new BusinessException("Usuario no autenticado");
+        }
+        String needed = "ROLE_" + role.name();
+        boolean ok = auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals(needed));
+        if (!ok) throw new BusinessException("Acceso denegado");
+    }
 
 }
 

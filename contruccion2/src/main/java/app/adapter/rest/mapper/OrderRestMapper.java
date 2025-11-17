@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import app.adapter.rest.request.*;
 import app.adapter.rest.response.*;
 import app.domain.model.*;
-import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import app.adapter.in.builder.MedicationOrderBuilder;

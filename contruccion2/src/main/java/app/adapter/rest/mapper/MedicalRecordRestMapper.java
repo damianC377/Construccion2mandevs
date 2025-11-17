@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import app.adapter.in.builder.MedicalRecordBuilder;
 import app.adapter.rest.request.MedicalRecordRequest;
 import app.adapter.rest.response.MedicalRecordResponse;
-import app.adapter.rest.mapper.MedicalOrderRestMapper;
 import app.domain.model.MedicalRecord;
 import app.domain.model.MedicalOrder;
 

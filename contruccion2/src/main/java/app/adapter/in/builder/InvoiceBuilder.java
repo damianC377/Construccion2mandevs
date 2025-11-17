@@ -2,9 +2,7 @@ package app.adapter.in.builder;
 
 import java.util.List;
 import app.adapter.in.validators.InvoiceValidator;
-import app.adapter.in.validators.MedicalOrderValidator;
-import app.adapter.in.validators.PatientValidator;
-import app.adapter.in.validators.UserValidator;
+
 import app.domain.model.Invoice;
 import app.domain.model.MedicalOrder;
 import app.domain.model.Order;
@@ -18,12 +16,7 @@ public class InvoiceBuilder {
 
     @Autowired
     private InvoiceValidator invoiceValidator;
-    @Autowired
-    private MedicalOrderValidator medicalOrderValidator;
-    @Autowired
-    private PatientValidator patientValidator;
-    @Autowired
-    private UserValidator userValidator;
+
     @Autowired
     private MedicalOrderBuilder medicalOrderBuilder;
 

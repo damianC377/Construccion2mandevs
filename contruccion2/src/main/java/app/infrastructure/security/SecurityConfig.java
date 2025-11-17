@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import app.domain.port.AuthenticationPort;
 
 @Configuration
 @EnableWebSecurity
@@ -16,23 +17,24 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationPort authenticationPort) throws Exception {
         http
                 .csrf(csrf -> csrf.disable()) // Desactivar CSRF para APIs REST
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll() // Endpoints de login abiertos
                         .requestMatchers("/api/admin/**").hasRole("ADMIN") // Solo ADMIN puede acceder
+
                         .anyRequest().authenticated() // Todas las demás rutas requieren autenticación
                 )
-                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class); // Añadir filtro JWT antes del filtro por defecto
+            .addFilterBefore(jwtAuthenticationFilter(authenticationPort), UsernamePasswordAuthenticationFilter.class); // Añadir filtro JWT antes del filtro por defecto
 
         return http.build(); // Construye la cadena de filtros
     }
 
     @Bean
     // Filtro que valida tokens JWT en cada petición
-    public JwtAuthenticationFilter jwtAuthenticationFilter() {
-        return new JwtAuthenticationFilter();
+    public JwtAuthenticationFilter jwtAuthenticationFilter(AuthenticationPort authenticationPort) {
+        return new JwtAuthenticationFilter(authenticationPort);
     }
 
     @Bean

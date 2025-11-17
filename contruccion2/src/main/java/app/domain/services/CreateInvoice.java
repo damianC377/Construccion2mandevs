@@ -7,6 +7,9 @@ import app.domain.port.InvoicePort;
 import app.domain.port.PatientPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import app.application.exceptions.BusinessException;
 
 @Service
 public class CreateInvoice {
@@ -14,8 +17,6 @@ public class CreateInvoice {
     private InvoicePort invoicePort;
     @Autowired
     private PatientPort patientPort;
-    @Autowired
-    private UserRequireRole userRequireRole;
 
 
     //Crear Factura
@@ -31,7 +32,7 @@ public class CreateInvoice {
         }
 
         // Validar personal
-        userRequireRole.requireRole(Role.ADMINISTRATIVE_STAFF);
+        requireRole(Role.ADMINISTRATIVE_STAFF);
 
         //Validando que este el doctor asignado
         if(invoice.getDoctor() == null){
@@ -47,4 +48,14 @@ public class CreateInvoice {
         invoicePort.save(invoice);
     }
    
+    private void requireRole(Role role) throws BusinessException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated()) {
+            throw new BusinessException("Usuario no autenticado");
+        }
+        String needed = "ROLE_" + role.name();
+        boolean ok = auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals(needed));
+        if (!ok) throw new BusinessException("Acceso denegado");
+    }
+
 }

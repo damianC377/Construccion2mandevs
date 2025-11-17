@@ -27,7 +27,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/administrative")
-@PreAuthorize("hasRole('ADMINISTRATIVE')")
+@PreAuthorize("hasRole('ADMINISTRATIVE_STAFF')")
 public class AdministrativeStaffController {
 
     @Autowired

@@ -6,13 +6,13 @@ import app.domain.model.enums.Role;
 import app.domain.port.PatientPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Service
 public class CreatePatient {
     @Autowired
     private PatientPort patientPort;
-    @Autowired
-    private UserRequireRole userRequireRole;
 
     // Crear paciente
     public void create(Patient patient) throws Exception {
@@ -22,10 +22,19 @@ public class CreatePatient {
             throw new BusinessException("Este paciente ya fue registrado");
         }
         
-        userRequireRole.requireRole(Role.ADMINISTRATIVE_STAFF);
+        requireRole(Role.ADMINISTRATIVE_STAFF);
         
         patientPort.save(patient);
     }
 
+    private void requireRole(Role role) throws BusinessException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated()) {
+            throw new BusinessException("Usuario no autenticado");
+        }
+        String needed = "ROLE_" + role.name();
+        boolean ok = auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals(needed));
+        if (!ok) throw new BusinessException("Acceso denegado");
+    }
 
 }

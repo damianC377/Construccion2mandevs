@@ -7,6 +7,9 @@ import app.domain.port.MedicalRecordPort;
 import app.domain.port.PatientPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import app.application.exceptions.BusinessException;
 
 @Service
 public class SearchMedicalRecordByPatient {
@@ -14,10 +17,8 @@ public class SearchMedicalRecordByPatient {
     private PatientPort patientPort;
     @Autowired
     private MedicalRecordPort medicalRecordPort;
-    @Autowired
-    private UserRequireAnyRole RequireAnyRoleService;
-	
-	// Consultar historia clínica por paciente
+    
+    // Consultar historia clínica por paciente
     public MedicalRecord search(Patient patient) throws Exception {
         // Validar si el paciente existe
         patient = patientPort.findByDocument(patient);
@@ -30,8 +31,24 @@ public class SearchMedicalRecordByPatient {
             throw new Exception("El paciente no tiene historia clínica registrada");
         }
         
-        RequireAnyRoleService.requireAnyRole(Role.NURSE, Role.DOCTOR);
+        requireAnyRole(Role.NURSE, Role.DOCTOR);
 
         return record;
+    }
+
+    private void requireAnyRole(Role... roles) throws BusinessException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated()) {
+            throw new BusinessException("Usuario no autenticado");
+        }
+        boolean ok = false;
+        for (Role r : roles) {
+            String needed = "ROLE_" + r.name();
+            if (auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals(needed))) {
+                ok = true;
+                break;
+            }
+        }
+        if (!ok) throw new BusinessException("Acceso denegado");
     }
 }

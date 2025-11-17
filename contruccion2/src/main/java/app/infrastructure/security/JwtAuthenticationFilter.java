@@ -5,7 +5,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,14 +16,17 @@ import java.util.ArrayList;
 // Filtro que se ejecuta una vez por cada petición para verificar JWT
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private AuthenticationPort authenticationPort; // Puerto para validar token
+    private final AuthenticationPort authenticationPort; // Puerto para validar token
+
+    public JwtAuthenticationFilter(AuthenticationPort authenticationPort) {
+        this.authenticationPort = authenticationPort;
+    }
 
     // Metodo principal del filtro
     @Override
-    protected void doFilterInternal(HttpServletRequest request,
-                                    HttpServletResponse response,
-                                    FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(@NonNull HttpServletRequest request,
+                                    @NonNull HttpServletResponse response,
+                                    @NonNull FilterChain filterChain) throws ServletException, IOException {
         String token = this.extractToken(request); // Obtener token del header/encabezado de la petición
 
         if (token != null) {
