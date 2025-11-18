@@ -20,9 +20,9 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         try {
-            // Buscar si ya existe el usuario admin
+            // Buscar si ya existe el usuario recursos humanos
             User probe = new User();
-            probe.setUserName("admin");
+            probe.setUserName("hr"); // Cambié el username a algo representativo
 
             User existing = null;
             try {
@@ -32,26 +32,24 @@ public class DataInitializer implements CommandLineRunner {
             }
 
             if (existing == null) {
-                // Crear usuario admin por defecto
-                User admin = new User();
-                admin.setFullName("Administrador del Sistema");
-                admin.setDocument(11111111L);
-                admin.setUserName("admin");
-
+                // Crear usuario Recursos Humanos por defecto
+                User hrUser = new User();
+                hrUser.setFullName("Usuario Recursos Humanos");
+                hrUser.setDocument(12345678L);
+                hrUser.setUserName("hr");
                 // Encriptar la contraseña
-                admin.setPassword(passwordEncoder.encode("admin"));
+                hrUser.setPassword(passwordEncoder.encode("hr"));
+                hrUser.setRole(Role.HUMAN_RESOURCES);
+                hrUser.setEmailAddress("hr@example.com");
+                hrUser.setPhoneNumber("3001234567");
 
-                admin.setRole(Role.ADMINISTRATOR);
-                admin.setEmailAddress("admin@example.com");
-                admin.setPhoneNumber("3000000000");
+                userPort.save(hrUser);
 
-                userPort.save(admin);
-
-                System.out.println("✅ Usuario ADMIN creado por defecto");
-                System.out.println("   Usuario: admin");
-                System.out.println("   Contraseña: admin");
+                System.out.println("✅ Usuario HUMAN_RESOURCES creado por defecto");
+                System.out.println("   Usuario: hr");
+                System.out.println("   Contraseña: hr");
             } else {
-                System.out.println("ℹ️  El usuario ADMIN ya existe");
+                System.out.println("ℹ️  El usuario HUMAN_RESOURCES ya existe");
             }
 
         } catch (Exception e) {
